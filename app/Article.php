@@ -18,7 +18,7 @@ class Article extends Model
     }
 
     public function add( Request $request ) {
-        $bg = uploadBg($request->bg);
+        $bg = uploadBg($request);
 
         $article = new Article();
 

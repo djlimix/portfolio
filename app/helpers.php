@@ -5,7 +5,7 @@
  * Store this images in disk and replace src value with *
  * the url returing the image from the disk             *
  * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
+use \Illuminate\Http\Request;
 /**
  * @param $data
  *
@@ -67,27 +67,31 @@ function b64toUrl( $data )
  *
  * @return string[]
  */
-function uploadBg( $request ) {
-    $image = $request;
+function uploadBg( Request $request ) {
+    $image = $request->file('bg');
+    $path = storage_path('app/temp/');
+    $temp = $path . $image->getClientOriginalName();
+    $image->move($path, $image->getClientOriginalName());
     $id = uniqid();
 
     $name = $id . '.' . $image->clientExtension();
     $thumb_name = $id . '_thumb.' . $image->clientExtension();
 
     $img = Image::configure(['driver' => 'imagick'])
-                ->make($image)->resize(2000, null, function ($constraint) {
+                ->make($temp)->resize(2000, null, function ($constraint) {
         $constraint->aspectRatio();
         $constraint->upsize();
-    })->encode($image->getMimeType(), 100);
+    })->encode($image->getClientMimeType(), 100);
 
     $thumb = Image::configure(['driver' => 'imagick'])
-                ->make($image)->resize(500, null, function ($constraint) {
+                ->make($temp)->resize(500, null, function ($constraint) {
         $constraint->aspectRatio();
         $constraint->upsize();
-    })->encode($image->getMimeType(), 100);
+    })->encode($image->getClientMimeType(), 100);
 
     Storage::put('/articles/' . $name, $img);
     Storage::put('/articles/' . $thumb_name, $thumb);
+    Storage::delete('/temp/' . $image->getClientOriginalName());
 
     return ['bg' => '/img/articles/'.$name, 'thumb' => '/img/articles/'.$thumb_name];
 }
