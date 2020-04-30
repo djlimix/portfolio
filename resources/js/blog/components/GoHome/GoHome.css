@@ -1,0 +1,22 @@
+.goHome {
+    font-weight: 700;
+    position: fixed;
+    left: 0;
+    top: 2em;
+    padding: 15px;
+    background: #13315C;
+    font-size: 20px;
+    z-index: 3;
+}
+
+@media screen and (max-width: 462px) {
+    .goHome {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 462px) {
+    .goHome {
+        font-size: 15px;
+    }
+}

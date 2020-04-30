@@ -1,0 +1,190 @@
+.contact {
+    min-height: 100vh;
+    background: #A3A5D9;
+}
+
+.img {
+    width: 50%;
+    height: 100%;
+    display: inline-block;
+    padding: 12% 10%;
+}
+
+.img img {
+    width: 100%;
+    display: block;
+    margin: auto;
+}
+
+.right {
+    width: 50%;
+    display: inline-block;
+    vertical-align: top;
+    text-align: right;
+    padding: 18vh 5em 0;
+}
+
+.right h1 {
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size:50px;
+    padding-bottom: 1em;
+}
+
+.alert {
+    padding: 15px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.alertDanger {
+    background: #FC6404;
+}
+
+.alertSuccess {
+    background: #39d939;
+}
+
+.alertInfo {
+    background: #F2EEEB;
+}
+
+.right form {
+    display: flex;
+    flex-direction: column;
+}
+
+.right form input, .right form textarea {
+    padding: 20px;
+    background: #C9CFF2;
+    margin: 10px 0;
+    border: 0;
+}
+
+.right form input::placeholder, .right form textarea::placeholder {
+    color: #000;
+    opacity: 1;
+    font-weight: 600;
+    text-align: right;
+}
+
+.right form textarea {
+    resize: vertical;
+}
+
+.right form button {
+    margin: 10px 0 10px auto;
+    width: 40%;
+    border: 0;
+    background: #3D3791;
+    color: #F2EEEB;
+    text-align: center;
+    font-weight: 600;
+    padding: 23px;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.right form button:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.captcha {
+    display: flex;
+    align-items: center;
+}
+
+.captcha div:first-of-type {
+    width: 50%;
+}
+
+@media screen and (max-width: 1283px) {
+    .right h1 {
+        font-size: 40px;
+    }
+
+    .img img {
+        transform: translateY(25%);
+    }
+
+    .right form button {
+        font-size: 17px;
+    }
+}
+
+@media screen and (max-width: 1193px) {
+    .right h1 {
+        font-size: 30px;
+    }
+
+    .img img {
+        transform: translateY(25%);
+    }
+
+    .right form button {
+        font-size: 15px;
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 995px) {
+    .right form button {
+        padding: 14px;
+    }
+}
+
+@media screen and (max-width: 905px) {
+    .right h1 {
+        font-size: 40px;
+    }
+
+    .img, .right {
+        width: 100%;
+    }
+
+    .img {
+        padding: 10% 0;
+    }
+
+    .img img {
+        transform: none;
+        width: 50%;
+    }
+
+    .right {
+        text-align: center;
+        padding: 0 10%;
+    }
+
+    .right form button {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 621px) {
+    .img {
+        padding: 15% 0;
+    }
+}
+
+@media screen and (max-width: 405px) {
+    .img {
+        padding: 20% 0;
+    }
+}
+
+@media screen and (max-width: 344px) {
+    .right h1 {
+        font-size: 40px;
+    }
+
+    .right form {
+        margin: 15px 0;
+    }
+
+    .right form button {
+        font-size: 15px;
+    }
+}

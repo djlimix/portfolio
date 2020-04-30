@@ -1,0 +1,21 @@
+.home {
+    min-height: 100vh;
+    background: #333533;
+}
+
+.home h1 {
+    padding: 40px;
+    font-weight: 500;
+    font-size: 75px;
+}
+
+.home h1:before {
+    content: '#';
+    color: #4F4F4F;
+    text-shadow: none;
+}
+
+.articles {
+    display: flex;
+    flex-wrap: wrap;
+}
