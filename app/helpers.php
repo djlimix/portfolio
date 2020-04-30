@@ -68,6 +68,7 @@ function b64toUrl( $data )
  * @return string[]
  */
 function uploadBg( Request $request ) {
+    ini_set('upload_max_filesize', '128MB');
     $image = $request->file('bg');
     $path = storage_path('app/temp/');
     $temp = $path . $image->getClientOriginalName();
