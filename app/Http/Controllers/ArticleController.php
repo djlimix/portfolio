@@ -23,9 +23,12 @@ class ArticleController extends Controller
             return Article::whereSlug($slug)->with('tags')->firstOrFail();
         });
 
-        $article->views++;
+        if (!isset($_COOKIE['seen.' . $slug])) {
+            $article->views++;
 
-        $article->save();
+            $article->save();
+            setcookie('seen.' . $slug, '1', strtotime('+1 YEAR'), '/');
+        }
 
         return $article->toJson();
     }
