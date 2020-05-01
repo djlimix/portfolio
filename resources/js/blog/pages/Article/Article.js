@@ -32,7 +32,7 @@ const Article = ({ formatDate }) => {
 		<div className={style.article}>
             {article.loading === true ? <Pace color="#27ae60" height="10px"/> : (
                 <>
-                    <SEO title={article.article} description={`${article.text.replace(/<[^>]+>/g, '').slice(0, 300)}...`} canonical={`https://blog.limix.eu/` + slug} img={article.bg} />
+                    <SEO title={article.title} description={`${article.text.replace(/<[^>]+>/g, '').slice(0, 300)}...`} canonical={`https://blog.limix.eu/` + slug} img={article.bg} />
                     <div className={style.coverImage}>
                         <img src={article.bg} alt={article.title}/>
                         <GoHome />
@@ -41,7 +41,7 @@ const Article = ({ formatDate }) => {
                     <div className={style.content}>
                         <h1 className={style.heading}>{article.title}</h1>
                         <div className={style.textContent}>
-                            <p dangerouslySetInnerHTML={{__html: article.text.replace('<br>', '<br><br>')}} />
+                            <div className={style.text} dangerouslySetInnerHTML={{__html: article.text.replace('class="img"', `class="${style.img}"`)}} />
                             <div className={style.tags}>
                                 {tags}
                             </div>

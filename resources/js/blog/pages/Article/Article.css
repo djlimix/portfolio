@@ -38,13 +38,31 @@
     display: flex;
 }
 
-.textContent p {
+.textContent .text {
     width: 75%;
     display: inline-block;
     font-size: 18px;
 }
 
-.textContent p img {
+.textContent .text p {
+    margin: 10px 0;
+}
+
+.textContent .text p a {
+    color: #F5CB5C;
+    border-bottom: 3px solid transparent;
+    transition: all .3s ease-in-out;
+}
+
+.textContent .text p a:hover {
+    border-bottom: 3px solid #F5CB5C;
+}
+
+.textContent .text img:not(.img) {
+    vertical-align: middle;
+}
+
+.textContent .text .img {
     width: 100% !important;
     display: block;
     margin: 10px 0;
@@ -80,7 +98,7 @@
         flex-flow: column;
     }
 
-    .textContent p {
+    .textContent .text {
         width: 100%;
     }
 
@@ -105,7 +123,7 @@
         padding: 0 25px;
     }
 
-    .textContent p {
+    .textContent .text {
         text-align: justify;
         font-size: 16px;
     }
@@ -151,7 +169,7 @@
         padding: 0 10px;
     }
 
-    .textContent p {
+    .textContent .text {
         font-size: 14px;
     }
 }

@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use Instagram\Api;
+use Instagram\Storage\CacheManager;
 
 class PagesController extends Controller
 {

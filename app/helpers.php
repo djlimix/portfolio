@@ -55,6 +55,9 @@ function b64toUrl( $data )
 
             // Set new src attribute value as a url that gives image in response.
             $image->setAttribute('src', '/img' . $filepath);
+
+            // add class img
+            $image->setAttribute('class', 'img');
         }
     }
 
