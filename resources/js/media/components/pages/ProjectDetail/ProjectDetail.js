@@ -50,7 +50,7 @@ const ProjectDetail = () => {
 
 	return (
 		<div className={style.projectDetail}>
-            {project.loading === true ? <Pace color="#27ae60" height="10px"/> : (
+            {project.loading === true ? <div style={{zIndex: 3}}><Pace color="#27ae60" height="10px" /></div> : (
                 <div>
                     <SEO title={`${project.title} / LiMix Media`} description={`${project.description.replace(/<[^>]+>/g, '').slice(0, 300)}...`} canonical={`https://limixmedia.com/projects/${project.slug}`} img={project.images.length > 0 ? `https://limixmedia.com/media${project.images[0].url}` : 'https://limixmedia.com/media/img/share.png'} />
                     <div className={style.first}>

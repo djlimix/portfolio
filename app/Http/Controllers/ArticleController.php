@@ -10,8 +10,8 @@ class ArticleController extends Controller
 {
     public function getArticles() {
         $articles = Cache::rememberForever('homepage', function () {
-            $featured = Article::select('slug', 'title', 'bg', 'created_at')->latest()->first();
-            $otherArticles = Article::select('slug', 'title', 'thumb as bg', 'created_at')->orderBy('created_at', 'DESC')->skip(1)->take(4)->get();
+            $featured = Article::select('slug', 'title', 'bg', 'created_at')->whereActive('1')->latest()->first();
+            $otherArticles = Article::select('slug', 'title', 'thumb as bg', 'created_at')->whereActive('1')->orderBy('created_at', 'DESC')->skip(1)->take(4)->get();
             return json_encode(['featured' => $featured, 'other' => $otherArticles]);
         });
 
@@ -20,7 +20,7 @@ class ArticleController extends Controller
 
     public function getArticle( $slug ) {
         $article = Cache::rememberForever('article.' . $slug, function () use ($slug) {
-            return Article::whereSlug($slug)->with('tags')->firstOrFail();
+            return Article::whereSlug($slug)->whereActive('1')->with('tags')->firstOrFail();
         });
 
         if (!isset($_COOKIE['seen.' . $slug])) {

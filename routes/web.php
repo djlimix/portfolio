@@ -20,7 +20,7 @@ Route::group(['domain' => 'blog.limix.eu'], function () {
     Route::view('/', 'blog');
 
     // blog posts
-    foreach ( Article::select( 'slug' )->get() as $article ) {
+    foreach ( Article::select( 'slug' )->whereActive('1')->get() as $article ) {
         Route::view('/' . $article->slug, 'blog');
     }
 

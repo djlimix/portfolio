@@ -49,7 +49,7 @@ class GenerateSitemap extends Command
                     <changefreq>daily</changefreq>
                     <priority>1.00</priority>
                 </url>';
-        foreach ( Article::all() as $article ) {
+        foreach ( Article::whereActive('1')->get() as $article ) {
             $xml .= '<url>
                         <loc>https://blog.limix.eu/' . $article->slug . '</loc>
                         <changefreq>daily</changefreq>
@@ -118,7 +118,7 @@ class GenerateSitemap extends Command
                 </url>';
         }
         $xml .= '<url>
-                    <loc>https://dj.limix.eu/contact</loc>
+                    <loc>https://limixmedia.com/contact</loc>
                     <changefreq>daily</changefreq>
                     <priority>0.80</priority>
                 </url>';

@@ -1549,16 +1549,16 @@
         },
         {
             "name": "pgrimaud/instagram-user-feed",
-            "version": "5.6.1",
+            "version": "5.6.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pgrimaud/instagram-user-feed.git",
-                "reference": "492ab7410d5f9bc32dd8fe53fd8fc3a5c0b849c0"
+                "reference": "6e68b16db8889346ab83e13e38c4d8b4eb1bbca5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pgrimaud/instagram-user-feed/zipball/492ab7410d5f9bc32dd8fe53fd8fc3a5c0b849c0",
-                "reference": "492ab7410d5f9bc32dd8fe53fd8fc3a5c0b849c0",
+                "url": "https://api.github.com/repos/pgrimaud/instagram-user-feed/zipball/6e68b16db8889346ab83e13e38c4d8b4eb1bbca5",
+                "reference": "6e68b16db8889346ab83e13e38c4d8b4eb1bbca5",
                 "shasum": ""
             },
             "require": {
@@ -1605,7 +1605,17 @@
                 "sdk",
                 "social"
             ],
-            "time": "2020-03-29T20:18:24+00:00"
+            "funding": [
+                {
+                    "url": "https://www.paypal.me/grimaudpierre",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/pgrimaud",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-05-18T15:04:05+00:00"
         },
         {
             "name": "phpoption/phpoption",
@@ -6765,5 +6775,6 @@
         "ext-dom": "*",
         "ext-json": "*"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
 }

@@ -28,6 +28,6 @@
 
     <div id="root"></div>
 
-    <script src="{{ asset('media/js/app.js') }}"></script>
+    <script src="{{ asset('media/js/app.js') }}?v1.0.1"></script>
 </body>
 </html>

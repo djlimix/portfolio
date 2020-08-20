@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -39,6 +40,7 @@ class Article extends Model
         }
 
         Cache::delete('homepage');
+        Cache::delete('article.'.$article->slug);
 
         return redirect()->route('admin.articles.edit', $article->id);
     }
@@ -46,12 +48,18 @@ class Article extends Model
     public function edit( Article $article, Request $request ) {
         $article->tags()->detach();
 
-        $article->slug  = Str::slug($request->title);
-        $article->title = $request->title;
-        $article->text  = b64toUrl($request->text);
+        $article->slug      = Str::slug($request->title);
+        $article->title     = $request->title;
+        $article->text      = b64toUrl($request->text);
+
+        if ($article->active == '0' && $request->published == '1') {
+            $article->created_at = Carbon::today()->toDateTimeString();
+        }
+
+        $article->active    = $request->published == '1' ? '1' : '0';
 
         if (!empty($request->bg)) {
-            $bg = uploadBg($request->bg);
+            $bg = uploadBg($request);
             $article->bg    = $bg['bg'];
             $article->thumb = $bg['thumb'];
         }

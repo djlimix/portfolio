@@ -4,7 +4,7 @@
 
 @section('content_header')
     <h1>{{ $article->title  }}</h1>
-    <img src="{{ $article->thumb }}" alt="thumb" style="width: 100%">
+    <img src="{{ $article->bg }}" alt="bg" style="width: 100%">
 @stop
 
 @section('content')
@@ -40,6 +40,10 @@
 
                 @endforelse
             </select>
+        </div>
+        <div class="form-group">
+            <label for="published">Is published?</label>
+            <input type="checkbox" class="form-control icheck-blue" id="published" aria-describedby="published" name="published" @if($article->active == '1') checked @endif value="1">
         </div>
         <button type="submit" class="btn btn-primary">Edit</button>
         <a href="{{ route('admin.articles.delete', $article) }}" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</a>

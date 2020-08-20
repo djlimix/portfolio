@@ -17,7 +17,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('dj/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('dj/favicon-96x96.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('dj/favicon-16x16.png') }}">
-    <link rel="manifest" href="{{ asset('dj/manifest.webmanifest') }}">
+    <link rel="manifest" href="{{ asset('dj/manifest.webmanifest') }}?v1.1">
     <meta name="msapplication-TileColor" content="#3D3791">
     <meta name="msapplication-TileImage" content="{{ asset('dj/ms-icon-144x144.png') }}">
     <meta name="theme-color" content="#3D3791">
@@ -29,5 +29,27 @@
     <div id="root"></div>
 
     <script src="{{ asset('dj/js/app.js') }}"></script>
+    <script>
+        let installPromptEvent;
+
+        window.addEventListener('beforeinstallprompt', (event) => {
+            // Prevent Chrome <= 67 from automatically showing the prompt
+            event.preventDefault();
+            // Stash the event so it can be triggered later.
+            installPromptEvent = event;
+            console.log(installPromptEvent)
+            // Update the install UI to notify the user app can be installed
+            document.querySelector('#install-button').disabled = false;
+        });
+        if ('serviceWorker' in navigator) {
+            console.log("Will the service worker register?");
+            navigator.serviceWorker.register('service-worker.js')
+                .then(function(reg){
+                    console.log("Yes, it did.");
+                }).catch(function(err) {
+                console.log("No it didn't. This happened:", err)
+            });
+        }
+    </script>
 </body>
 </html>
