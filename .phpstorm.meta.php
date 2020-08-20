@@ -5,7 +5,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2020-05-01 15:30:38.
+    * Generated on 2020-08-20 17:21:55.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -48,6 +48,7 @@ namespace PHPSTORM_META {
         'auth.password.broker' => \Illuminate\Auth\Passwords\PasswordBroker::class,
         'blade.compiler' => \Illuminate\View\Compilers\BladeCompiler::class,
         'cache' => \Illuminate\Cache\CacheManager::class,
+        'cache.psr6' => \Symfony\Component\Cache\Adapter\Psr16Adapter::class,
         'cache.store' => \Illuminate\Cache\Repository::class,
         'command.auth.resets.clear' => \Illuminate\Auth\Console\ClearResetsCommand::class,
         'command.cache.clear' => \Illuminate\Cache\Console\ClearCommand::class,
@@ -205,6 +206,7 @@ namespace PHPSTORM_META {
         'auth.password.broker' => \Illuminate\Auth\Passwords\PasswordBroker::class,
         'blade.compiler' => \Illuminate\View\Compilers\BladeCompiler::class,
         'cache' => \Illuminate\Cache\CacheManager::class,
+        'cache.psr6' => \Symfony\Component\Cache\Adapter\Psr16Adapter::class,
         'cache.store' => \Illuminate\Cache\Repository::class,
         'command.auth.resets.clear' => \Illuminate\Auth\Console\ClearResetsCommand::class,
         'command.cache.clear' => \Illuminate\Cache\Console\ClearCommand::class,
@@ -362,6 +364,7 @@ namespace PHPSTORM_META {
         'auth.password.broker' => \Illuminate\Auth\Passwords\PasswordBroker::class,
         'blade.compiler' => \Illuminate\View\Compilers\BladeCompiler::class,
         'cache' => \Illuminate\Cache\CacheManager::class,
+        'cache.psr6' => \Symfony\Component\Cache\Adapter\Psr16Adapter::class,
         'cache.store' => \Illuminate\Cache\Repository::class,
         'command.auth.resets.clear' => \Illuminate\Auth\Console\ClearResetsCommand::class,
         'command.cache.clear' => \Illuminate\Cache\Console\ClearCommand::class,
@@ -519,6 +522,7 @@ namespace PHPSTORM_META {
         'auth.password.broker' => \Illuminate\Auth\Passwords\PasswordBroker::class,
         'blade.compiler' => \Illuminate\View\Compilers\BladeCompiler::class,
         'cache' => \Illuminate\Cache\CacheManager::class,
+        'cache.psr6' => \Symfony\Component\Cache\Adapter\Psr16Adapter::class,
         'cache.store' => \Illuminate\Cache\Repository::class,
         'command.auth.resets.clear' => \Illuminate\Auth\Console\ClearResetsCommand::class,
         'command.cache.clear' => \Illuminate\Cache\Console\ClearCommand::class,
@@ -676,6 +680,7 @@ namespace PHPSTORM_META {
         'auth.password.broker' => \Illuminate\Auth\Passwords\PasswordBroker::class,
         'blade.compiler' => \Illuminate\View\Compilers\BladeCompiler::class,
         'cache' => \Illuminate\Cache\CacheManager::class,
+        'cache.psr6' => \Symfony\Component\Cache\Adapter\Psr16Adapter::class,
         'cache.store' => \Illuminate\Cache\Repository::class,
         'command.auth.resets.clear' => \Illuminate\Auth\Console\ClearResetsCommand::class,
         'command.cache.clear' => \Illuminate\Cache\Console\ClearCommand::class,
@@ -833,6 +838,7 @@ namespace PHPSTORM_META {
         'auth.password.broker' => \Illuminate\Auth\Passwords\PasswordBroker::class,
         'blade.compiler' => \Illuminate\View\Compilers\BladeCompiler::class,
         'cache' => \Illuminate\Cache\CacheManager::class,
+        'cache.psr6' => \Symfony\Component\Cache\Adapter\Psr16Adapter::class,
         'cache.store' => \Illuminate\Cache\Repository::class,
         'command.auth.resets.clear' => \Illuminate\Auth\Console\ClearResetsCommand::class,
         'command.cache.clear' => \Illuminate\Cache\Console\ClearCommand::class,
@@ -990,6 +996,7 @@ namespace PHPSTORM_META {
         'auth.password.broker' => \Illuminate\Auth\Passwords\PasswordBroker::class,
         'blade.compiler' => \Illuminate\View\Compilers\BladeCompiler::class,
         'cache' => \Illuminate\Cache\CacheManager::class,
+        'cache.psr6' => \Symfony\Component\Cache\Adapter\Psr16Adapter::class,
         'cache.store' => \Illuminate\Cache\Repository::class,
         'command.auth.resets.clear' => \Illuminate\Auth\Console\ClearResetsCommand::class,
         'command.cache.clear' => \Illuminate\Cache\Console\ClearCommand::class,
@@ -1147,6 +1154,7 @@ namespace PHPSTORM_META {
         'auth.password.broker' => \Illuminate\Auth\Passwords\PasswordBroker::class,
         'blade.compiler' => \Illuminate\View\Compilers\BladeCompiler::class,
         'cache' => \Illuminate\Cache\CacheManager::class,
+        'cache.psr6' => \Symfony\Component\Cache\Adapter\Psr16Adapter::class,
         'cache.store' => \Illuminate\Cache\Repository::class,
         'command.auth.resets.clear' => \Illuminate\Auth\Console\ClearResetsCommand::class,
         'command.cache.clear' => \Illuminate\Cache\Console\ClearCommand::class,
