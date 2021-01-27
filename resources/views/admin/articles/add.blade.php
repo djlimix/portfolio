@@ -17,6 +17,10 @@
             <label for="text">Content</label>
             <textarea name="text" id="text" class="form-group" required></textarea>
         </div>
+        <div class="form-group">
+            <label for="ig">IG post URL</label>
+            <input type="url" class="form-control" id="ig" aria-describedby="ig" name="ig" placeholder="https://www.instagram.com/p/CJ38KAngLNC/">
+        </div>
         <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="bg">Background</span>

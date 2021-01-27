@@ -9,13 +9,9 @@ use Illuminate\Support\Facades\Cache;
 class ArticleController extends Controller
 {
     public function getArticles() {
-        $articles = Cache::rememberForever('homepage', function () {
-            $featured = Article::select('slug', 'title', 'bg', 'created_at')->whereActive('1')->latest()->first();
-            $otherArticles = Article::select('slug', 'title', 'thumb as bg', 'created_at')->whereActive('1')->orderBy('created_at', 'DESC')->skip(1)->take(4)->get();
-            return json_encode(['featured' => $featured, 'other' => $otherArticles]);
+        return Cache::rememberForever('homepage', function () {
+            return Article::select('slug', 'title', 'thumb', 'created_at', 'text')->whereActive('1')->latest('id')->take(8)->get();
         });
-
-        return $articles;
     }
 
     public function getArticle( $slug ) {
@@ -30,6 +26,6 @@ class ArticleController extends Controller
             setcookie('seen.' . $slug, '1', strtotime('+1 YEAR'), '/');
         }
 
-        return $article->toJson();
+        return $article;
     }
 }

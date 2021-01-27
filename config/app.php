@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Europe/Bratislava',
 
     /*
     |--------------------------------------------------------------------------
@@ -228,5 +228,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
     ],
+
+    'ig_username' => env('IG_USERNAME', ''),
+    'ig_pass' => env('IG_PASSWORD', ''),
 
 ];

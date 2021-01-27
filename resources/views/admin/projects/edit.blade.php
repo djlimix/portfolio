@@ -21,19 +21,25 @@
             <label for="technology">Technology</label>
             <select name="technology" id="technology" class="form-control select">
                 <option value="react"
-                    @if($project->technology == 'react') selected @endif
+                    @if($project->technology === 'react') selected @endif
                 >React</option>
                 <option value="react-laravel"
-                    @if($project->technology == 'react-laravel') selected @endif
+                    @if($project->technology === 'react-laravel') selected @endif
                 >React & Laravel</option>
                 <option value="laravel"
-                    @if($project->technology == 'laravel') selected @endif
+                    @if($project->technology === 'laravel') selected @endif
                 >Laravel</option>
+                <option value="vue-laravel"
+                    @if($project->technology === 'vue-laravel') selected @endif
+                >Vue & Laravel</option>
+                <option value="livewire-laravel"
+                    @if($project->technology === 'livewire-laravel') selected @endif
+                >Livewire & Laravel</option>
                 <option value="php"
-                    @if($project->technology == 'php') selected @endif
+                    @if($project->technology === 'php') selected @endif
                 >PHP</option>
                 <option value="wp"
-                    @if($project->technology == 'wp') selected @endif
+                    @if($project->technology === 'wp') selected @endif
                 >WordPress</option>
             </select>
         </div>
@@ -41,10 +47,10 @@
             <label for="type">Type</label>
             <select name="type" id="type" class="form-control select">
                 <option value="be"
-                    @if($project->type == 'b') selected @endif
+                    @if($project->type === 'b') selected @endif
                 >BackEnd only</option>
                 <option value="full"
-                    @if($project->type == 'full') selected @endif
+                    @if($project->type === 'full') selected @endif
                 >BackEnd + FrontEnd</option>
             </select>
         </div>
@@ -55,16 +61,16 @@
                     @if($project->won === null) selected @endif
                 >----</option>
                 <option value="3rd"
-                    @if($project->won == '3rd') selected @endif
+                    @if($project->won === '3rd') selected @endif
                 >3rd place JI</option>
                 <option value="dean"
-                    @if($project->won == 'dean') selected @endif
+                    @if($project->won === 'dean') selected @endif
                 >Dean's prize JI</option>
             </select>
         </div>
         <div class="form-group">
             <label for="link">Link</label>
-            <input type="url" class="form-control" id="link" aria-describedby="link" name="link" placeholder="Enter link" value="{{ $project->link }}" required>
+            <input type="url" class="form-control" id="link" aria-describedby="link" name="link" placeholder="Enter link" value="{{ $project->link }}">
         </div>
         <div class="form-group">
             <label for="year">Year</label>
@@ -75,7 +81,7 @@
     </form>
     <div class="flex-row">
         @foreach($project->images as $image)
-            <img src="{{ asset('/media' . $image->url) }}" alt="img" style="width: 24%">
+            <img src="{{ asset($image->url) }}" alt="img" style="width: 24%">
         @endforeach
     </div>
 @stop

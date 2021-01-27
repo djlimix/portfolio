@@ -1,0 +1,35 @@
+.text-intro img:first-of-type {
+    width: 100%;
+}
+
+.text-intro .img,
+.text-intro iframe {
+    margin: 0 auto;
+    /*display: block;*/
+}
+
+.text-intro .img {
+    width: 100%;
+}
+
+.text-intro a:not(.tag),
+.text-intro a:not(.tag):visited {
+    color: #8d8d8d;
+    font-weight: 600;
+}
+
+.text-intro a:not(.tag):hover {
+    color: #000;
+}
+
+.text-intro b {
+    font-weight: bold;
+}
+
+.text-intro p {
+    font-size: 14px;
+}
+
+.content .text-intro a.ig-link {
+    color: #833AB4;
+}

@@ -10,12 +10,10 @@ use Illuminate\Support\Str;
 
 class Article extends Model
 {
+    protected $fillable = ['slug', 'ig', 'title', 'text', 'views', 'bg', 'thumb', 'active', 'created_at'];
+
     public function tags() {
         return $this->belongsToMany('App\Tag')->orderByDesc('created_at');
-    }
-
-    public function getPublishedAttribute() {
-        return date('d. m. Y, G:i:s', strtotime($this->created_at));
     }
 
     public function add( Request $request ) {
@@ -24,6 +22,7 @@ class Article extends Model
         $article = new Article();
 
         $article->slug  = Str::slug($request->title);
+        $article->ig    = $request->ig;
         $article->title = $request->title;
         $article->text  = b64toUrl($request->text);
         $article->bg    = $bg['bg'];
@@ -49,8 +48,9 @@ class Article extends Model
         $article->tags()->detach();
 
         $article->slug      = Str::slug($request->title);
+        $article->ig        = $request->ig;
         $article->title     = $request->title;
-        $article->text      = b64toUrl($request->text);
+        $article->text      = b64toUrl(checkForCode($request->text));
 
         if ($article->active == '0' && $request->published == '1') {
             $article->created_at = Carbon::today()->toDateTimeString();
@@ -78,5 +78,21 @@ class Article extends Model
         Cache::delete('article.' . $article->slug);
 
         return redirect()->route('admin.articles.edit', $article->id);
+    }
+
+    public function getStrippedTextAttribute() {
+        return strip_tags($this->text);
+    }
+
+    public function getShortAttribute() {
+        return Str::limit($this->stripped_text, 25);
+    }
+
+    public function getReadingTimeAttribute() {
+        return floor(str_word_count($this->stripped_text) / 200) ?: 1;
+    }
+
+    public function getReadingTimeHtmlAttribute() {
+        return $this->reading_time . trans_choice('minutes', $this->reading_time);
     }
 }

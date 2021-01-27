@@ -22,6 +22,8 @@
             <select name="technology" id="technology" class="form-control select">
                 <option value="react">React</option>
                 <option value="react-laravel">React & Laravel</option>
+                <option value="vue-laravel">Vue & Laravel</option>
+                <option value="livewire-laravel">Livewire & Laravel</option>
                 <option value="laravel">Laravel</option>
                 <option value="php">PHP</option>
                 <option value="wp">WordPress</option>
@@ -44,7 +46,7 @@
         </div>
         <div class="form-group">
             <label for="link">Link</label>
-            <input type="url" class="form-control" id="link" aria-describedby="link" name="link" placeholder="Enter link" required>
+            <input type="url" class="form-control" id="link" aria-describedby="link" name="link" placeholder="Enter link">
         </div>
         <div class="form-group">
             <label for="year">Year</label>

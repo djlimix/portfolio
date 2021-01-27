@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 
+import shared from '../../../../media/components/pages/Home/Home.css'
 import style from './Home.css'
+import classNames from 'classnames';
 
 import SEO from "../../../../SEO/SEO";
 
@@ -44,7 +46,7 @@ class Home extends Component {
         });
 
         return (
-            <div className={style.home}>
+            <div className={classNames(style.home, shared.home)}>
                 <SEO title="DJ LiMix" description="DJ LiMix is young DJ who loves all types of house music, but can also play an commercial set for your party." canonical="https://dj.limix.eu" />
                 <h1>DJ LiMix</h1>
                 <h2><em>{textThatChanges}</em> for your party</h2>

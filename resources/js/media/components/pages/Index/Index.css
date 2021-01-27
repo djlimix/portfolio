@@ -64,6 +64,9 @@ li {
     list-style: none;
     margin: 0 10px;
     text-transform: uppercase;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .navigation a {

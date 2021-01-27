@@ -1,5 +1,5 @@
 import React  from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import {
     BrowserRouter as Router,
     Switch,
@@ -9,26 +9,30 @@ import {
 
 import Home from "../Home/Home";
 import About from "../About/About";
-import ScrollToTop from "../ScrollToTop/ScrollToTop";
+import Contact from "../Contact/Contact";
 import Production from "../Production/Production";
+import ScrollToTop from "../ScrollToTop/ScrollToTop";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 
+import shared from '../../../../media/components/pages/Index/Index.css'
 import style from './Index.css'
-import Contact from "../Contact/Contact";
+import classNames from 'classnames';
+
+const logo = require('./logo.png');
 
 const showMenu = () => {
 
-    document.querySelector('#showMenu').classList.add(style.hide);
-    document.querySelector('#hideMenu').classList.remove(style.hide);
-    document.querySelector('.' + style.navigation).classList.add(style.shown);
+    document.querySelector('#showMenu').classList.add(shared.hide);
+    document.querySelector('#hideMenu').classList.remove(shared.hide);
+    document.querySelector('.' + style.navigation).classList.add(shared.shown);
 };
 
 const hideMenu = () => {
-    document.querySelector('#showMenu').classList.remove(style.hide);
-    document.querySelector('#hideMenu').classList.add(style.hide);
-    document.querySelector('.' + style.navigation).classList.remove(style.shown);
+    document.querySelector('#showMenu').classList.remove(shared.hide);
+    document.querySelector('#hideMenu').classList.add(shared.hide);
+    document.querySelector('.' + style.navigation).classList.remove(shared.shown);
 };
 
 function Index() {
@@ -39,29 +43,29 @@ function Index() {
                 <ScrollToTop toggleNavHandler={hideMenu} />
                 <header className={window.location.pathname === "/" || window.location.pathname === "/about" ? style.zIndex : ''}>
                     <nav>
-                        <FontAwesomeIcon icon={faBars} className={style.bars} id="showMenu" onClick={showMenu} />
-                        <FontAwesomeIcon icon={faTimes} className={`${style.bars} ${style.hide}`} id="hideMenu" onClick={hideMenu} />
-                        <ul className={style.navigation}>
-                            <li className={style.logo}>
-                                <NavLink to="/">DJ LiMix</NavLink>
+                        <FontAwesomeIcon icon={faBars} className={shared.bars} id="showMenu" onClick={showMenu} />
+                        <FontAwesomeIcon icon={faTimes} className={classNames(shared.bars, shared.hide)} id="hideMenu" onClick={hideMenu} />
+                        <ul className={classNames(style.navigation, shared.navigation)}>
+                            <li className={classNames(style.logo, shared.logo)}>
+                                <NavLink to="/"><img src={logo} /></NavLink>
                             </li>
                             <li>
-                                <NavLink to="/" activeClassName={style.active} exact>Home</NavLink>
+                                <NavLink to="/" activeClassName={classNames(style.active, shared.active)} exact>Home</NavLink>
                             </li>
                             <li>
-                                <NavLink to="/about" activeClassName={style.active}>About me</NavLink>
+                                <NavLink to="/about" activeClassName={classNames(style.active, shared.active)}>About me</NavLink>
                             </li>
                             <li>
-                                <NavLink to="/production" activeClassName={style.active}>Production</NavLink>
+                                <NavLink to="/production" activeClassName={classNames(style.active, shared.active)}>Production</NavLink>
                             </li>
                             <li>
-                                <a href="https://linktr.ee/totendjzacky/" rel="nofollow norefferer" target="_blank">Links</a>
+                                <a href="https://links.limix.eu" rel="nofollow norefferer" target="_blank">Links</a>
                             </li>
                             <li>
                                 <a href="https://blog.limix.eu/" rel="nofollow norefferer" target="_blank">Blog</a>
                             </li>
                             <li>
-                                <NavLink to="/contact" activeClassName={style.active}>Contact</NavLink>
+                                <NavLink to="/contact" activeClassName={classNames(style.active, shared.active)}>Contact</NavLink>
                             </li>
                         </ul>
                     </nav>
@@ -87,6 +91,5 @@ function Index() {
 
 export default Index;
 
-if (document.getElementById('root')) {
-    ReactDOM.render(<Index />, document.getElementById('root'));
-}
+const rootElement = document.getElementById("root");
+render(<Index />, rootElement)

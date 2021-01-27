@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import {
     BrowserRouter as Router,
     Switch,
@@ -15,21 +15,6 @@ import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
 import style from './Index.css';
 
 function Index() {
-    const nth = (d) => {
-        if (d > 3 && d < 21) return 'th';
-        switch (d % 10) {
-            case 1:  return "st";
-            case 2:  return "nd";
-            case 3:  return "rd";
-            default: return "th";
-        }
-    }
-
-    const formatDate = (date) => {
-        const months = ["January", "February", "March","April", "May", "June", "July", "August", "September", "October", "November", "December"];
-        return (date.getDate()) + nth(date.getDate()) + " " + months[date.getMonth()] + " " + date.getFullYear();
-    }
-
     return (
         <div>
             <Router onUpdate={() => {window.scrollTo(0, 0)}}>
@@ -52,6 +37,21 @@ function Index() {
 
 export default Index;
 
-if (document.getElementById('root')) {
-    ReactDOM.render(<Index />, document.getElementById('root'));
+
+const nth = (d) => {
+    if (d > 3 && d < 21) return 'th';
+    switch (d % 10) {
+        case 1:  return "st";
+        case 2:  return "nd";
+        case 3:  return "rd";
+        default: return "th";
+    }
 }
+
+const formatDate = (date) => {
+    const months = ["January", "February", "March","April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    return (date.getDate()) + nth(date.getDate()) + " " + months[date.getMonth()] + " " + date.getFullYear();
+}
+
+const rootElement = document.getElementById("root");
+render(<Home formatDate={formatDate} />, rootElement)

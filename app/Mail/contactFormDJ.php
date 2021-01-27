@@ -11,6 +11,8 @@ class contactFormDJ extends Mailable
 {
     use Queueable, SerializesModels;
 
+    private $data;
+
     /**
      * Create a new message instance.
      *
@@ -28,7 +30,8 @@ class contactFormDJ extends Mailable
      */
     public function build()
     {
-        return $this->from('info@limix.eu')
+        return $this->from('no-reply@limix.eu')
+                ->replyTo($this->data['email'], $this->data['name'])
                 ->markdown('emails.dj')
                 ->withData($this->data);
     }

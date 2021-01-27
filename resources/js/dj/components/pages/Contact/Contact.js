@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 
+import shared from '../../../../media/components/pages/Contact/Contact.css'
 import style from './Contact.css'
+import classNames from 'classnames';
 
 import Footer from "../Footer/Footer";
 import SEO from "../../../../SEO/SEO";
@@ -47,13 +49,13 @@ class Contact extends Component {
         if (this.state.response !== undefined) {
             if (this.state.response.error === true) {
                 error_msg = (
-                    <div className={style.alert + ' ' + style.alertDanger}>
+                    <div className={classNames(shared.alert, shared.alertDanger)}>
                         {this.state.response.msg}
                     </div>
                 )
             } else {
                 error_msg = (
-                    <div className={style.alert + ' ' + style.alertSuccess}>
+                    <div className={classNames(shared.alert, shared.alertSuccess)}>
                         {this.state.response.msg}
                     </div>
                 )
@@ -61,26 +63,26 @@ class Contact extends Component {
         }
         if (this.state.sending === true) {
             error_msg = (
-                <div className={style.alert + ' ' + style.alertInfo}>
+                <div className={classNames(shared.alert, style.alertInfo)}>
                     Sending email, please wait...
                 </div>
             )
         }
 
         return (
-            <div className={style.contact}>
+            <div className={classNames(style.contact, shared.contact)}>
                 <SEO title="Contact / DJ LiMix" description="If you want to have the best party, be quick! You can contact me only here." canonical="https://dj.limix.eu/contact" />
-                <div className={style.img}>
+                <div className={shared.img}>
                     <img src="/dj/img/contact.gif" alt=""/>
                 </div>
-                <div className={style.right}>
+                <div className={classNames(style.right, shared.right)}>
                     <h1>Contact me</h1>
                     <form action="/api/contact" id="form" onSubmit={this.submitEmail} method="POST">
                         {error_msg}
                         <input type="text" placeholder="Name" name="name" required onChange={this.changeFormData} />
                         <input type="email" placeholder="Email" name="email" required onChange={this.changeFormData}/>
                         <textarea name="message" cols="30" rows="8" placeholder="Message" required onChange={this.changeFormData}/>
-                        <div className={style.captcha}>
+                        <div className={shared.captcha}>
                             <button type="submit">Send message</button>
                         </div>
                     </form>

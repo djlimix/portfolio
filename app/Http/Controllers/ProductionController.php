@@ -13,6 +13,6 @@ class ProductionController extends Controller
      * @return string
      */
     public function getAll() {
-        return Production::orderByDesc('year')->get(['title', 'link', 'year', 'type'])->toJson();
+        return response()->json(Production::orderByDesc('year')->orderByDesc('id')->get(['title', 'link', 'year', 'type']));
     }
 }

@@ -41,7 +41,7 @@ class Project extends Model
                         ->encode($image->getMimeType(), 100);
 
             Storage::put($name, $img);
-            $project->images()->create(['url' => '/img' . $name]);
+            $project->images()->create(['url' => '/media/img' . $name]);
 
             $i++;
         }

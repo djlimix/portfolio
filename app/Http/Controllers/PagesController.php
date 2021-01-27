@@ -9,7 +9,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Instagram\Api;
-use Instagram\Storage\CacheManager;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 
 class PagesController extends Controller
 {
@@ -53,25 +53,25 @@ class PagesController extends Controller
 
         Mail::to('info@limix.eu')->send($mail);
 
-        return json_encode(['error' => false, 'msg' => 'Thank you for your message. I will try to reply you as soon as possible!']);
+        return response()->json(['error' => false, 'msg' => 'Thank you for your message. I will try to reply you as soon as possible!']);
     }
 
     public function ig() {
-        $cache = new CacheManager(__DIR__ . '/../cache');
-        $api   = new Api($cache);
-        $api->setUserName('totendjzacky');
+        $cachePool = new FilesystemAdapter('Instagram', 0, __DIR__ . '/../cache');
 
-        $feed = $api->getFeed(9);
+        $api = new Api($cachePool);
+        $api->login(config('app.ig_username'), config('app.ig_pass')); // mandatory
+        $profile = $api->getProfile('totendjzacky');
 
         $i = 1;
-        foreach ( $feed->medias as $media ) {
-            $return[$i]['src'] = $media->thumbnails[3]->src;
+        foreach ( $profile->getMedias() as $media ) {
+            $return[$i]['src']  = $media->getThumbnails()[3]->src;
             $return[$i]['link'] = $media->getLink();
             $return[$i]['text'] = $media->getCaption();
 
             $i++;
         }
 
-        return json_encode($return);
+        return response()->json($return);
     }
 }

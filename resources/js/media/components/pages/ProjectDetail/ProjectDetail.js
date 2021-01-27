@@ -32,6 +32,12 @@ const ProjectDetail = () => {
         case 'react-laravel':
             img = '/media/img/react-laravel.png';
             break;
+        case 'vue-laravel':
+            img = '/media/img/vue-laravel.png';
+            break;
+        case 'livewire-laravel':
+            img = '/media/img/livewire-laravel.png';
+            break;
         case 'laravel':
             img = '/media/img/Laravel.png';
             break;

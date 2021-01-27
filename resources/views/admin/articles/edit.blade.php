@@ -18,6 +18,10 @@
             <label for="text">Content</label>
             <textarea name="text" id="text" class="form-group" required>{{ $article->text }}</textarea>
         </div>
+        <div class="form-group">
+            <label for="ig">IG post URL</label>
+            <input type="url" class="form-control" id="ig" aria-describedby="ig" name="ig" placeholder="https://www.instagram.com/p/CJ38KAngLNC/" value="{{ $article->ig }}">
+        </div>
         <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="bg">Background</span>
@@ -60,6 +64,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+    <script src="{{ asset('js/summernote-ext-highlight.min.js') }}"></script>
     <script>
         $.ajax({
             url: 'https://api.github.com/emojis',
@@ -90,7 +95,19 @@
                         }
                         return '';
                     }
-                }
+                },
+                prettifyHtml: false,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['fontname', ['fontname']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link', 'picture', 'video']],
+                    ['view', ['fullscreen', 'codeview', 'help']],
+                    ['highlight', ['highlight']],
+                ],
             });
             $('#select').select2({
                 tags: true

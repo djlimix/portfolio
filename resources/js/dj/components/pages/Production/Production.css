@@ -1,52 +1,18 @@
 .mashups, .mixes {
-    min-height: 100vh;
-    height: auto;
-    background: #A3A5D9;
     padding-bottom: 50px;
+}
+
+.mashups {
+    background: #A3A5D9;
 }
 
 .mixes {
     background: #C9CFF2;
 }
 
-.mashups h1, .mixes h1 {
-    text-transform: uppercase;
-    font-weight: 800;
-    font-size: 50px;
-    padding-top: 21vh;
-    padding-bottom: 80px;
-    text-align: center;
-}
-
-.table {
-    border-collapse: collapse;
-    margin: auto;
-    width: 90%;
-    font-weight: 700;
-    color: #7C7C7C;
-    font-size: 22px;
-}
-
-.table a, .table a:visited {
-    color: inherit;
-}
-
-td {
-    text-align: center;
-    padding: 15px;
-}
-
 td:last-child {
     border-left: 1px solid #7C7C7C;
-    width: 10%;
-}
-
-tr {
-    border-bottom: 1px solid #7C7C7C;
-}
-
-tr:last-of-type {
-    border-bottom: 0;
+    border-right: none;
 }
 
 /* NEPARNE */
@@ -62,38 +28,4 @@ tr:nth-child(odd) {
 /* PARNE V MIXES */
 .mixes tr:nth-child(even) {
     background-color: #A3A5D9;
-}
-
-@media screen and (max-width: 1000px) {
-    .mashups h1, .mixes h1 {
-        font-size: 40px;
-    }
-
-    .table {
-        font-size: 17px;
-    }
-}
-
-@media screen and (max-width: 759px) {
-    .footer {
-        position: unset;
-        bottom: unset;
-        right: unset;
-        left: unset;
-        padding-top: 1em;
-    }
-}
-
-@media screen and (max-width: 425px) {
-    .table {
-        font-size: 15px;
-    }
-
-    td:nth-child(2) {
-        display: none;
-    }
-
-    td:last-child {
-        border-left: 1px solid #7C7C7C;
-    }
 }

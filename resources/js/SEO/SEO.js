@@ -18,7 +18,7 @@ const SEO = ({ title, description, canonical, img = null }) => {
 
             {/* TWITTER */}
             <meta property="twitter:card" content="summary" />
-            <meta property="twitter:creator" content="@DJLiMix" />
+            <meta property="twitter:creator" content="@limixmedia" />
             <meta property="twitter:title" content={title} />
             <meta property="twitter:description" content={description} />
             {img !== null ? <meta property="twitter:image" content={img} /> : null}

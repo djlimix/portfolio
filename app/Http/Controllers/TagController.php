@@ -8,8 +8,6 @@ use Illuminate\Http\Request;
 class TagController extends Controller
 {
     public function getTagArticles( $slug ) {
-        $tag = Tag::whereSlug($slug)->with('articles')->firstOrFail();
-
-        return $tag->toJson();
+        return Tag::whereSlug($slug)->with('articles')->firstOrFail();
     }
 }

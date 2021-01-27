@@ -1,5 +1,9 @@
 <?php
 
+if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
+    $_SERVER['REMOTE_ADDR'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
+}
+
 /* * * * * * * * * * * * * * * * * * * * * * * * * * *  *
  * Get images uploaded with texteditor in base64 format *
  * Store this images in disk and replace src value with *
@@ -114,4 +118,8 @@ function in_array_r($needle, $haystack, $strict = false) {
     }
 
     return false;
+}
+
+function checkForCode($body) {
+    return str_replace('<pre>', '<pre class="prettyprint">', $body);
 }

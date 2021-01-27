@@ -39,5 +39,5 @@ mix.react('resources/js/blog/app.js', 'public/js')
                     ]
                 },
             ],
-        },
+        }
     });

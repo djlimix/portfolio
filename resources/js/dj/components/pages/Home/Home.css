@@ -1,29 +1,14 @@
 .home {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-flow: column;
+    background: none;
+    box-shadow: none;
 }
 
 .home h1 {
-    text-transform: uppercase;
-    font-size: 117px;
-    letter-spacing: 4px;
-    font-weight: 600;
-    color: #fff;
     z-index: 1;
 }
 
 .home h2 {
-    font-size: 42px;
-    font-weight: 400;
-    color: #fff;
     z-index: 1;
-}
-
-.home h2 em {
-    font-weight: 600;
 }
 
 .home video {
@@ -33,34 +18,4 @@
     min-height: 100%;
     transform: translateY(5%);
     opacity: .7;
-}
-
-@media screen and (max-width: 830px) {
-    .home h1 {
-        font-size: 80px;
-    }
-
-    .home h2 {
-        font-size: 30px;
-    }
-}
-
-@media screen and (max-width: 590px) {
-    .home h1 {
-        font-size: 60px;
-    }
-
-    .home h2 {
-        font-size: 20px;
-    }
-}
-
-@media screen and (max-width: 394px) {
-    .home h1 {
-        font-size: 40px;
-    }
-
-    .home h2 {
-        font-size: 15px;
-    }
 }

@@ -1,5 +1,5 @@
 import React  from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import {
     BrowserRouter as Router,
     Switch,
@@ -56,7 +56,7 @@ function Index() {
                                 <NavLink to="/projects" activeClassName={style.active}>Projects</NavLink>
                             </li>
                             <li>
-                                <a href="https://linktr.ee/limixmedia/" rel="nofollow norefferer" target="_blank">Links</a>
+                                <a href="https://links.limixmedia.com" rel="nofollow norefferer" target="_blank">Links</a>
                             </li>
                             <li>
                                 <a href="https://blog.limix.eu/" rel="nofollow norefferer" target="_blank">Blog</a>
@@ -91,6 +91,6 @@ function Index() {
 
 export default Index;
 
-if (document.getElementById('root')) {
-    ReactDOM.render(<Index />, document.getElementById('root'));
-}
+
+const rootElement = document.getElementById("root");
+render(<Index />, rootElement)

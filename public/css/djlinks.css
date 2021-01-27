@@ -1,0 +1,19 @@
+::-webkit-scrollbar-track {
+    background: #C9CFF2;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #3D3791;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #A3A5D9;
+}
+
+section {
+    background: #A3A5D9;
+}
+
+.links a:hover {
+    border-bottom: 3px solid #3D3791;
+}
