@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLessonsTable extends Migration
+class CreateTimetablesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class CreateLessonsTable extends Migration
      */
     public function up()
     {
-        Schema::create('lessons', function (Blueprint $table) {
+        Schema::create('timetables', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('meet_link')->nullable();
+            $table->foreignId('lesson_id')->constrained()->cascadeOnDelete();
+            $table->time('start');
+            $table->time('end');
+            $table->integer('day');
+            $table->enum('week', ['1', '2'])->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +31,6 @@ class CreateLessonsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lessons');
+        Schema::dropIfExists('timetables');
     }
 }

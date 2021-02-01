@@ -49,17 +49,17 @@ class OnlineLessonNotification extends Notification
             $message->subject("Prehľad dneskajších hodín");
             $message->line('Dnes Ťa čakajú tieto hodiny:');
             foreach ( $this->lessons as $lesson ) {
-                $message->line("- **{$lesson->name}** ({$lesson->start} - {$lesson->end})");
+                $message->line("- **{$lesson->lesson->name}** ({$lesson->start} - {$lesson->end})");
             }
             return $message;
         } else {
             $this->lessons = $this->lessons->first();
             return (new MailMessage)
                 ->from('no-reply@limix.eu', 'Maxikov inteligentný systém')
-                ->subject("O 10 minút ti začína {$this->lessons->name}!")
-                ->line('O 10 minút ti začína online hodina z predmetu **' . $this->lessons->name . '**!')
+                ->subject("O 10 minút ti začína {$this->lessons->lesson->name}!")
+                ->line('O 10 minút ti začína online hodina z predmetu **' . $this->lessons->lesson->name . '**!')
                 ->line("Hodina začína o **{$this->lessons->start}** a končí o **{$this->lessons->end}**.")
-                ->action('Klikni sem pre pripojenie na online hodinu', $this->lessons->meet_link ?? 'https://classroom.google.com/u/2/h');
+                ->action('Klikni sem pre pripojenie na online hodinu', $this->lessons->lesson->meet_link ?? 'https://classroom.google.com/u/2/h');
         }
     }
 
