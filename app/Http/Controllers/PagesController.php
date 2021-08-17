@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Article;
 use App\Mail\contactFormDJ;
 use App\Mail\contactFormMedia;
 use Illuminate\Http\Request;
@@ -73,5 +74,17 @@ class PagesController extends Controller
         }
 
         return response()->json($return);
+    }
+
+    public function homepage() {
+        $articles = Article::select('title', 'created_at', 'slug')->latest()->get();
+
+        return view('index', compact('articles'));
+    }
+
+    public function writing($slug) {
+        $article = Article::whereSlug($slug)->whereActive('1')->firstOrFail();
+
+        return view('writing', compact('article'));
     }
 }

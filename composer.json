@@ -1,38 +1,34 @@
 {
-    "name": "laravel/laravel",
+    "name": "djlimix/portfolio",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "Personal Website",
     "keywords": [
-        "framework",
-        "laravel"
+        "djlimix",
+        "portfolio"
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.2.5",
+        "php": ">7.2.5",
         "ext-dom": "*",
         "ext-json": "*",
         "ergebnis/composer-normalize": "^2.11",
-        "felixdorn/laravel-rickroll": "dev-master",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
-        "guzzlehttp/guzzle": "^6.3",
+        "guzzlehttp/guzzle": "^7.0.1",
         "intervention/image": "^2.5",
         "jeroennoten/laravel-adminlte": "^3.2",
-        "laravel/framework": "^7.0",
+        "laravel/framework": "^8.0",
         "laravel/tinker": "^2.0",
-        "laravel/ui": "^2.0",
-        "livewire/livewire": "^2.3",
-        "pgrimaud/instagram-user-feed": "^6.0",
-        "stolz/assets": "^0.2.0"
+        "laravel/ui": "^3.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.3",
         "barryvdh/laravel-ide-helper": "^2.7",
-        "facade/ignition": "^2.0",
+        "facade/ignition": "^2.3.6",
         "fzaninotto/faker": "^1.9.1",
         "mockery/mockery": "^1.3.1",
-        "nunomaduro/collision": "^4.1",
-        "phpunit/phpunit": "^8.5"
+        "nunomaduro/collision": "^5.0",
+        "phpunit/phpunit": "^9.0"
     },
     "config": {
         "optimize-autoloader": true,
@@ -66,7 +62,6 @@
     "scripts": {
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
-            "@php artisan vendor:publish --force --tag=livewire:assets --ansi",
             "@php artisan ide-helper:generate",
             "@php artisan ide-helper:meta"
         ],
@@ -75,7 +70,6 @@
             "@composer normalize --ansi --no-interaction --quiet",
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi",
-            "@php artisan vendor:publish --force --tag=livewire:assets --ansi",
             "@php artisan optimize:clear",
             "@composer run ide-helper"
         ],

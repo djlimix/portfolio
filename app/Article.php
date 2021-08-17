@@ -81,7 +81,7 @@ class Article extends Model
     }
 
     public function getStrippedTextAttribute() {
-        return strip_tags($this->text);
+        return trim(strip_tags($this->text));
     }
 
     public function getShortAttribute() {
@@ -94,5 +94,12 @@ class Article extends Model
 
     public function getReadingTimeHtmlAttribute() {
         return $this->reading_time . trans_choice('minutes', $this->reading_time);
+    }
+
+    public function getIsNewAttribute() {
+        $published_at = $this->created_at->timestamp;
+        $two_weeks = 60 * 60 * 24 * 14; // 60 seconds * 60 minutes * 24 hours * 14 days
+
+        return (time() - $published_at) <= $two_weeks;
     }
 }

@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-\Felix\RickRoll\Facades\RickRoll::routes();
 
 Route::get('admin/login', [
     'as' => 'login',
@@ -108,7 +107,17 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
 
 });
 
-Route::group(['domain' => 'blog.limix.eu'], function () {
+Route::get('/', [
+    'as' => 'home',
+    'uses' => 'App\Http\Controllers\PagesController@homepage'
+]);
+
+Route::get('/writing/{slug}', [
+    'as' => 'writing',
+    'uses' => 'App\Http\Controllers\PagesController@writing'
+]);
+
+/*Route::group(['domain' => 'blog.limix.eu'], function () {
     Route::get('/', [
         'as'    => 'blog.home',
         'uses'  => App\Http\Livewire\Blog\Home::class
@@ -123,19 +132,9 @@ Route::group(['domain' => 'blog.limix.eu'], function () {
         'as'    => 'blog.tag',
         'uses'  => \App\Http\Livewire\Blog\Tag::class
     ]);
+});*/
 
-    // blog posts
-    /*foreach ( Article::select( 'slug' )->whereActive('1')->get() as $article ) {
-        Route::view('/' . $article->slug, 'blog');
-    }
-
-    // tagy
-    foreach ( Tag::select( 'slug' )->get() as $tag ) {
-        Route::view('/tag/' . $tag->slug, 'blog');
-    }*/
-});
-
-Route::group(['domain' => 'dj.limix.eu'], function () {
+/*Route::group(['domain' => 'dj.limix.eu'], function () {
     Route::view('/', 'dj')->name('dj');
     Route::view('/about', 'dj');
     Route::view('/production', 'dj');
@@ -150,7 +149,7 @@ Route::group(['domain' => 'limixmedia.com'], function () {
     foreach ( Project::all() as $project ) {
         Route::view('/projects/' . $project->slug, 'media');
     }
-});
+});*/
 
 Route::group(['domain' => 'links.limix.eu'], function () {
     Route::get('/', 'App\Http\Controllers\LinkController@djIndex');

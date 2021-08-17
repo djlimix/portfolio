@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
     Route::get('/tag/{slug}', 'TagController@getTagArticles');
 });*/
 
-Route::group(['domain' => 'dj.limix.eu'], function () {
+/*Route::group(['domain' => 'dj.limix.eu'], function () {
     Route::post('contact', 'App\Http\Controllers\PagesController@contactDJ');
     Route::get('ig', 'App\Http\Controllers\PagesController@ig');
     Route::get('production', 'App\Http\Controllers\ProductionController@getAll');
@@ -29,4 +29,4 @@ Route::group(['domain' => 'limixmedia.com'], function () {
     Route::get('projects', 'App\Http\Controllers\ProjectsController@getProjects');
     Route::get('project/{slug}', 'App\Http\Controllers\ProjectsController@getProject');
     Route::post('contact', 'App\Http\Controllers\PagesController@contactMedia');
-});
+});*/

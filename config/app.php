@@ -229,7 +229,4 @@ return [
 
     ],
 
-    'ig_username' => env('IG_USERNAME', ''),
-    'ig_pass' => env('IG_PASSWORD', ''),
-
 ];
