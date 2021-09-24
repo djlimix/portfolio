@@ -117,6 +117,8 @@ Route::get('/writing/{slug}', [
     'uses' => 'App\Http\Controllers\PagesController@writing'
 ]);
 
+Route::get('sitemap', 'App\Http\Controllers\Controller@sitemap');
+
 /*Route::group(['domain' => 'blog.limix.eu'], function () {
     Route::get('/', [
         'as'    => 'blog.home',

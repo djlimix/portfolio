@@ -42,12 +42,11 @@ class GenerateSitemap extends Command
     public function handle()
     {
         // blog urls
-        $xml = '<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">';
+        $xml = '<urlset urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
 
         $xml .= '<url>
-                    <loc>https://blog.limix.eu</loc>
-                    <changefreq>daily</changefreq>
-                    <priority>1.00</priority>
+                    <loc>https://limix.eu</loc>
+                    <lastmod>2021-</lastmod>
                 </url>';
         foreach ( Article::whereActive('1')->get() as $article ) {
             $xml .= '<url>
@@ -66,64 +65,5 @@ class GenerateSitemap extends Command
         $xml .= '</urlset>';
 
         File::put(public_path('sitemap.xml'), $xml);
-
-        // DJ urls
-        $xml = '<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">';
-        $xml .= '<url>
-                    <loc>https://dj.limix.eu</loc>
-                    <changefreq>daily</changefreq>
-                    <priority>1.00</priority>
-                </url>';
-        $xml .= '<url>
-                    <loc>https://dj.limix.eu/about</loc>
-                    <changefreq>daily</changefreq>
-                    <priority>0.80</priority>
-                </url>';
-        $xml .= '<url>
-                    <loc>https://dj.limix.eu/production</loc>
-                    <changefreq>daily</changefreq>
-                    <priority>0.80</priority>
-                </url>';
-        $xml .= '<url>
-                    <loc>https://dj.limix.eu/contact</loc>
-                    <changefreq>daily</changefreq>
-                    <priority>0.80</priority>
-                </url>';
-        $xml .= '</urlset>';
-
-        File::put(public_path('dj/sitemap.xml'), $xml);
-
-        // MEDIA urls
-        $xml = '<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">';
-        $xml .= '<url>
-                    <loc>https://limixmedia.com</loc>
-                    <changefreq>daily</changefreq>
-                    <priority>1.00</priority>
-                </url>';
-        $xml .= '<url>
-                    <loc>https://limixmedia.com/about</loc>
-                    <changefreq>daily</changefreq>
-                    <priority>0.80</priority>
-                </url>';
-        $xml .= '<url>
-                    <loc>https://limixmedia.com/projects</loc>
-                    <changefreq>daily</changefreq>
-                    <priority>0.80</priority>
-                </url>';
-        foreach ( Project::all() as $project ) {
-            $xml .= '<url>
-                    <loc>https://limixmedia.com/projects/' . $project->slug . '</loc>
-                    <changefreq>daily</changefreq>
-                    <priority>0.80</priority>
-                </url>';
-        }
-        $xml .= '<url>
-                    <loc>https://limixmedia.com/contact</loc>
-                    <changefreq>daily</changefreq>
-                    <priority>0.80</priority>
-                </url>';
-        $xml .= '</urlset>';
-
-        File::put(public_path('media/sitemap.xml'), $xml);
     }
 }

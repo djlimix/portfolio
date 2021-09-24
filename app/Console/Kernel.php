@@ -24,7 +24,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-         $schedule->command('generate:sitemap')->daily();
+         //$schedule->command('generate:sitemap')->daily();
         //  $schedule->command('school:check')->everyMinute();
     }
 
