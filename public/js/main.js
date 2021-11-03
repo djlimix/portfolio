@@ -18,3 +18,13 @@
 	});
   });
 })();
+
+const showDescription = el => {
+    const div = document.querySelector(`#${el}`)
+
+    if (div.style.height === 'auto') {
+        div.style.height = 0;
+    } else {
+        div.style.height = 'auto'
+    }
+}
