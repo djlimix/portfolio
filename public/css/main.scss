@@ -307,8 +307,19 @@ body {
     min-height: 100vh;
     padding: 100px;
 
-    p {
+    p,
+    blockquote {
         font-size: 18px;
+    }
+
+    h1 {
+        font-size: 50px;
+    }
+
+    blockquote {
+        border-left: 10px solid #ccc;
+        margin: 1.5em 10px;
+        padding: 0.5em 10px;
     }
 }
 
@@ -448,7 +459,8 @@ body {
     .blog__main {
         padding: 40px;
 
-        p {
+        p,
+        blockquote {
             font-size: 16px;
         }
     }

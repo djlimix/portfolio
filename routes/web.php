@@ -107,18 +107,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
 
 });
 
-Route::get('/', [
-    'as' => 'home',
-    'uses' => 'App\Http\Controllers\PagesController@homepage'
-]);
-
-Route::get('/writing/{slug}', [
-    'as' => 'writing',
-    'uses' => 'App\Http\Controllers\PagesController@writing'
-]);
-
-Route::get('sitemap', 'App\Http\Controllers\Controller@sitemap');
-
 /*Route::group(['domain' => 'blog.limix.eu'], function () {
     Route::get('/', [
         'as'    => 'blog.home',
@@ -174,3 +162,15 @@ Route::group(['domain' => 'link.limixmedia.com'], function () {
         'as'    => 'redirect.media'
     ]);
 });
+
+Route::get('/', [
+    'as' => 'home',
+    'uses' => 'App\Http\Controllers\PagesController@homepage'
+]);
+
+Route::get('/writing/{slug}', [
+    'as' => 'writing',
+    'uses' => 'App\Http\Controllers\PagesController@writing'
+]);
+
+Route::get('sitemap', 'App\Http\Controllers\Controller@sitemap');

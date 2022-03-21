@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/locomotive-scroll.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}?v1.2">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="{{ asset('favicon.ico') }}">
 
@@ -19,11 +19,12 @@
 
     {{-- SEO --}}
     <meta name="author" content="Maximilián Csank">
-    <meta name="date" content="@yield('date', '2021-08-17')">
+    <meta name="designer" content="Maximilián Csank">
+    <meta name="date" content="@yield('date', '2022-03-21')">
     <meta name="rating" content="General">
     <meta name="robots" content="index, follow">
     <meta name="description" content="@yield('desc')"/>
-    <meta name="keywords" content="maximilian csank,maximilián,csank,backend,php,laravel,developer,windows,android,ios,phpstorm,vs code,jetbrains,datagrip,microsoft,google,composer,node,nodejs,react native,vue,api,apps,websites,app,website,rimavska sobota,rimavská sobota,slovakia,kosice,košice,dj,slovensko,montego music club,lightjockey,discjockey,">
+    <meta name="keywords" content="maximilian csank,maximilián,csank,backend,php,laravel,developer,windows,android,ios,phpstorm,vs code,jetbrains,datagrip,microsoft,google,composer,node,nodejs,react native,vue,api,apps,websites,app,website,rimavska sobota,rimavská sobota,slovakia,kosice,košice,dj,slovensko,montego music club,lightjockey,discjockey,web developer,webdeveloper,limixmedia,limix media,djlimix,dj limix">
     <link rel="canonical" href="{{ request()->fullUrl() }}">
 
     {{-- FB --}}

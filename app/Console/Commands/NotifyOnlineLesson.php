@@ -43,17 +43,13 @@ class NotifyOnlineLesson extends Command
         $carbon = Carbon::now()->addMinutes(10);
         $time = $carbon->format('H:i') . ':00';
 
-        $week = ($carbon->weekOfYear % 2) + 1;
         $day = $carbon->dayOfWeek - 1;
 
         if ($time == "07:40:00") {
             $this->info("Checking for online lessons for the whole day");
             $lessons = Timetable::where([
-                'day'   => $day,
-                'week'  => $week
-            ])->whereRaw("(day = ? AND week IS NULL)", [
-                $day
-            ], 'or')->orderBy('start')->with('lesson')->get();
+                'day'   => $day
+            ])->orderBy('start')->with('lesson')->get();
             if (count($lessons) > 0) {
                 $this->info("Lessons found, notifying user...");
                 $user = new User();
@@ -66,11 +62,8 @@ class NotifyOnlineLesson extends Command
             $this->info("Checking for online lessons");
             $lesson = Timetable::where([
                 'start' => $time,
-                'day'   => $day,
-                'week'  => $week
-            ])->whereRaw("(start = ? AND day = ? AND week IS NULL)", [
-                $time, $day
-            ], 'or')->orderBy('start')->with('lesson');
+                'day'   => $day
+            ])->orderBy('start')->with('lesson');
             if ($lesson->exists()) {
                 $this->info("Lesson found, notifying user...");
                 $user = new User();

@@ -77,13 +77,17 @@ class PagesController extends Controller
     }
 
     public function homepage() {
-        $articles = Article::select('title', 'created_at', 'slug')->latest()->get();
+        $articles = Article::select('title', 'created_at', 'slug')->whereActive('1')->latest()->get();
 
         return view('index', compact('articles'));
     }
 
     public function writing($slug) {
         $article = Article::whereSlug($slug)->whereActive('1')->firstOrFail();
+
+        $article->views++;
+
+        $article->save();
 
         return view('writing', compact('article'));
     }

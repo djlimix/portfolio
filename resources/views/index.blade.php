@@ -84,6 +84,19 @@
                 <div class="third__section__left">
                     <ul class="third__section__left--list">
                         <li class="third__section__left--client">
+                            <a href="javascript:void(0)" onclick="showDescription('montego')">MONTEGO MUSIC CLUB</a>
+                        </li>
+                        <div class="third__section__left--description" id="montego">
+                            MONTEGO MUSIC CLUB is the biggest nightclub in south Slovakia. I work there as a LightJockey (= I cause epilepsy to people (no, not seriously)) and I also am one of the resident DJs there. The goal for this website was to make a better-looking simple website that also includes e-shop for tickets. I wanted to use Shopify, but in the end, I had to use WooCommerce. I also coded a ticket verifier, which is a simple webpage that scans QR code of the ticket and then returns if the ticket is valid and what type of ticket it is.
+                            <a href="https://montegoclub.sk" target="_blank" rel="noreferrer noopenner">open website</a>
+                        </div>
+                        <li class="third__section__left--client">
+                            <a href="javascript:void(0)" onclick="showDescription('pyrotechnik')">Pyroobchod</a>
+                        </li>
+                        <div class="third__section__left--description" id="pyrotechnik">
+                            Pyrotechnik is the biggest firework seller in Slovakia. Every december, it opens stores in more than 50 cities for one month. Because of COVID restrictions, the stores could not sell anything directly, just serve as a pickup place. The e-shop that I made is a simple website that contains 5 products and everything that an e-shop needs. It works only in decembers.
+                        </div>
+                        <li class="third__section__left--client">
                             <a href="javascript:void(0)" onclick="showDescription('infi')">INFI.sk</a>
                         </li>
                         <div class="third__section__left--description" id="infi">
@@ -129,9 +142,6 @@
                         <div class="third__section__left--description" id="astro">
                             I have many hobbies. Astrophotography was one of them (for some time). We decided to create a website, where we would upload our photos of stars, planets, etc. People were also able to buy any photo they wanted for price of 1€. However, we stopped visiting the observatory in our town and this website slowly died. Only Facebook page is still available.
                         </div>
-                        <li class="third__section__left--coming-soon">
-                            <a>homophobia.wtf</a>
-                        </li>
                     </ul>
                 </div>
                 <div class="third__section__right" data-scroll data-scroll-sticky data-scroll-target="#fixed-elements-2">

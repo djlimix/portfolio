@@ -30,6 +30,6 @@
     </section>
 
     <section class="blog__main" data-scroll-section>
-        {!! preg_replace('#(<[a-z ]*)(style=("|\')(.*?)("|\'))([a-z ]*>)#', '\\1\\6', $article->text) !!}
+        {!! $article->text !!}
     </section>
 @endsection
