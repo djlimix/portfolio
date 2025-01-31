@@ -5,20 +5,20 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class IsAdmin
-{
+class IsAdmin {
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure $next
+     *
      * @return mixed
      */
-    public function handle($request, Closure $next)
-    {
-        if (Auth::user() && Auth::user()->group === 'admin' ) {
+    public function handle($request, Closure $next) {
+        if (Auth::check() && Auth::user()->group == "admin") {
             return $next($request);
         }
-        return redirect('/');
+
+        return abort(404);
     }
 }

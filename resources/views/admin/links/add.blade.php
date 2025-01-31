@@ -7,26 +7,59 @@
 @stop
 
 @section('content')
-    <form method="POST" action="{{ url()->current() }}">
+    <form method="POST" action="{{ isset($link) ? route('admin.links.update', $link) : route('admin.links.store') }}">
         @csrf
+        @isset($link)
+            @method('put')
+        @endisset
         <div class="form-group">
             <label for="title">Title</label>
-            <input type="text" class="form-control" id="title" aria-describedby="title" name="title" placeholder="Enter title" required value="{{ isset($link) ? $link->title : old('title') }}">
+            <input type="text"
+                   @class([
+		                'form-control', 'is-invalid' => $errors->has('title')
+                   ])
+                   id="title"
+                   aria-describedby="title"
+                   name="title"
+                   placeholder="Enter title"
+                   required
+                   value="{{ old('title', $link->title ?? '') }}">
         </div>
-        <div class="form-group">
-            <label for="for">For</label>
-            <select name="for" id="for" class="form-control">
-                <option value="dj" @if(old('for') === 'dj' || (isset($link) && $link->for === 'dj') || (isset($type) && $type === 'dj')) selected @endif>DJ LiMix</option>
-                <option value="media" @if(old('for') === 'media' || (isset($link) && $link->for === 'media') || (isset($type) && $type === 'media')) selected @endif>LiMix Media</option>
-            </select>
+        @error('title')
+        <div class="alert alert-danger">
+            {{ $message }}
         </div>
+        @enderror
         <div class="form-group">
             <label for="link">Link</label>
-            <input type="url" class="form-control" id="link" aria-describedby="link" name="link" placeholder="Enter link" required value="{{ isset($link) ? $link->url : old('link') }}">
+            <input type="url"
+                   @class([
+		                'form-control', 'is-invalid' => $errors->has('url')
+                   ])
+                   id="link"
+                   aria-describedby="url"
+                   name="url"
+                   placeholder="Enter link"
+                   required
+                   value="{{ old('url', $link->url ?? '') }}">
         </div>
+        @error('url')
+        <div class="alert alert-danger">
+            {{ $message }}
+        </div>
+        @enderror
         <button type="submit" class="btn btn-primary">{{ isset($link) ? 'Edit' : 'Add' }}</button>
-        @if(isset($link))
-            <a href="{{ route(($link->for === 'dj' ? 'admin.dj.links.delete' : 'admin.media.links.delete'), $link) }}" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
-        @endif
+        <button class="btn btn-danger"
+                type="button"
+                onclick="return confirm('Are you sure?') && document.querySelector('#deleteForm').submit()">Delete
+        </button>
     </form>
+    @isset($link)
+        <form action="{{ route('admin.links.destroy', $link) }}" id="deleteForm"
+              method="post">
+            @csrf
+            @method('delete')
+        </form>
+
+    @endisset
 @stop

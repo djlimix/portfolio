@@ -5,23 +5,17 @@ namespace App\Http\Controllers;
 use App\Link;
 use Illuminate\Http\Request;
 
-class LinkController extends Controller
-{
+class LinkController extends Controller {
     public function djIndex() {
         return view('djlinks')
-                ->withLinks(Link::latest()->whereFor('dj')->get());
-    }
-
-    public function mediaIndex() {
-        return view('medialinks')
-                ->withLinks(Link::latest()->whereFor('media')->get());
+            ->withLinks(Link::latest()->whereFor('dj')->get());
     }
 
     public function redirect(Request $request) {
-        $url = $request->url;
+        $url  = $request->url;
         $link = Link::whereUrl($url)->firstOrFail();
         $link->clicks()->create([
-            'ip' => $request->ip(),
+            'ip'       => $request->ip(),
             'referrer' => $request->referrer
         ]);
 

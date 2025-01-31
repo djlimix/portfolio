@@ -11,6 +11,7 @@
         "php": ">8.0",
         "ext-dom": "*",
         "ext-json": "*",
+        "doctrine/dbal": "^3.3",
         "ergebnis/composer-normalize": "^2.11",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
@@ -18,7 +19,8 @@
         "jeroennoten/laravel-adminlte": "^3.2",
         "laravel/framework": "^9.0",
         "laravel/tinker": "^2.0",
-        "laravel/ui": "^3.0"
+        "laravel/ui": "^3.0",
+        "spatie/laravel-ray": "^1.33"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.3",
@@ -48,6 +50,9 @@
         }
     },
     "config": {
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true
+        },
         "optimize-autoloader": true,
         "preferred-install": "dist",
         "sort-packages": true
@@ -62,7 +67,6 @@
             "Illuminate\\Foundation\\ComposerScripts::postUpdate"
         ],
         "post-autoload-dump": [
-            "@composer validate --strict --ansi --no-interaction",
             "@composer normalize --ansi --no-interaction --quiet",
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi",

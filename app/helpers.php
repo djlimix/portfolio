@@ -9,14 +9,16 @@ if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
  * Store this images in disk and replace src value with *
  * the url returing the image from the disk             *
  * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+use App\Http\Requests\Admin\StoreArticleRequest;
 use \Illuminate\Http\Request;
+
 /**
  * @param $data
  *
  * @return string
  */
-function b64toUrl( $data )
-{
+function b64toUrl($data) {
     // Create blank dom object
     $dom = new \DOMDocument();
 
@@ -40,12 +42,12 @@ function b64toUrl( $data )
 
             preg_match('/data:image\/(?<mime>.*?)\;/', $raw, $groups);
             $mimetype = $groups['mime'];
-            $filepath = '/articles/' . $name . '.' . $mimetype;
+            $filepath = '/articles/'.$name.'.'.$mimetype;
 
             // Convert base64 data to the image again
             $img = Image::configure(['driver' => 'imagick'])
                         ->make($raw)
-                        ->resize(1000, null, function ($constraint) {
+                        ->resize(1000, null, function($constraint) {
                             $constraint->aspectRatio();
                             $constraint->upsize();
                         })
@@ -58,7 +60,7 @@ function b64toUrl( $data )
             $image->removeAttribute('src');
 
             // Set new src attribute value as a url that gives image in response.
-            $image->setAttribute('src', '/img' . $filepath);
+            $image->setAttribute('src', '/img'.$filepath);
 
             // add class img
             $image->setAttribute('class', 'img');
@@ -70,35 +72,35 @@ function b64toUrl( $data )
 }
 
 /**
- * @param $request
+ * @param StoreArticleRequest $request
  *
  * @return string[]
  */
-function uploadBg( Request $request ) {
+function uploadBg(StoreArticleRequest $request) {
     $image = $request->file('bg');
-    $path = storage_path('app/temp/');
-    $temp = $path . $image->getClientOriginalName();
+    $path  = storage_path('app/temp/');
+    $temp  = $path.$image->getClientOriginalName();
     $image->move($path, $image->getClientOriginalName());
     $id = uniqid();
 
-    $name = $id . '.' . $image->clientExtension();
-    $thumb_name = $id . '_thumb.' . $image->clientExtension();
+    $name       = $id.'.'.$image->clientExtension();
+    $thumb_name = $id.'_thumb.'.$image->clientExtension();
 
     $img = Image::configure(['driver' => 'imagick'])
-                ->make($temp)->resize(2000, null, function ($constraint) {
-        $constraint->aspectRatio();
-        $constraint->upsize();
-    })->encode($image->getClientMimeType(), 100);
+                ->make($temp)->resize(2000, null, function($constraint) {
+            $constraint->aspectRatio();
+            $constraint->upsize();
+        })->encode($image->getClientMimeType(), 100);
 
     $thumb = Image::configure(['driver' => 'imagick'])
-                ->make($temp)->resize(500, null, function ($constraint) {
-        $constraint->aspectRatio();
-        $constraint->upsize();
-    })->encode($image->getClientMimeType(), 100);
+                  ->make($temp)->resize(500, null, function($constraint) {
+            $constraint->aspectRatio();
+            $constraint->upsize();
+        })->encode($image->getClientMimeType(), 100);
 
-    Storage::put('/articles/' . $name, $img);
-    Storage::put('/articles/' . $thumb_name, $thumb);
-    Storage::delete('/temp/' . $image->getClientOriginalName());
+    Storage::put('/articles/'.$name, $img);
+    Storage::put('/articles/'.$thumb_name, $thumb);
+    Storage::delete('/temp/'.$image->getClientOriginalName());
 
     return ['bg' => '/img/articles/'.$name, 'thumb' => '/img/articles/'.$thumb_name];
 }

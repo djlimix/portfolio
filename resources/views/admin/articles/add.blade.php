@@ -11,34 +11,32 @@
         @csrf
         <div class="form-group">
             <label for="title">Title</label>
-            <input type="text" class="form-control" id="title" aria-describedby="title" name="title" placeholder="Enter title" required>
+            <input type="text"
+                   class="form-control"
+                   id="title"
+                   aria-describedby="title"
+                   name="title"
+                   placeholder="Enter title"
+                   required>
         </div>
         <div class="form-group">
             <label for="text">Content</label>
             <textarea name="text" id="text" class="form-group" required></textarea>
-        </div>
-        <div class="form-group">
-            <label for="ig">IG post URL</label>
-            <input type="url" class="form-control" id="ig" aria-describedby="ig" name="ig" placeholder="https://www.instagram.com/p/CJ38KAngLNC/">
         </div>
         <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="bg">Background</span>
             </div>
             <div class="custom-file">
-                <input type="file" class="custom-file-input" id="bg" aria-describedby="bg" name="bg" accept="image/*" required>
+                <input type="file"
+                       class="custom-file-input"
+                       id="bg"
+                       aria-describedby="bg"
+                       name="bg"
+                       accept="image/*"
+                       required>
                 <label class="custom-file-label" for="bg">Choose file</label>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="select">Tags</label>
-            <select name="tags[]" id="select" multiple class="form-control" required>
-                @forelse($tags as $tag)
-                    <option value="{{ $tag->title }}">{{ $tag->title }}</option>
-                @empty
-
-                @endforelse
-            </select>
         </div>
         <button type="submit" class="btn btn-primary">Add</button>
     </form>
@@ -56,17 +54,18 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
     <script>
         $.ajax({
-            url: 'https://api.github.com/emojis',
+            url  : 'https://api.github.com/emojis',
             async: false
-        }).then(function(data) {
+        }).then(function (data) {
             window.emojis = Object.keys(data);
             window.emojiUrls = data;
-        });;
+        });
+        ;
 
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('#text').summernote({
                 height: 300,
-                hint: {
+                hint  : {
                     match   : /:([\-+\w]+)$/,
                     search  : function (keyword, callback) {
                         callback($.grep(emojis, function (item) {
@@ -85,9 +84,6 @@
                         return '';
                     }
                 }
-            });
-            $('#select').select2({
-                tags: true
             });
         });
     </script>

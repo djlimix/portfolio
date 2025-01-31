@@ -12,15 +12,18 @@
         @csrf
         <div class="form-group">
             <label for="title">Title</label>
-            <input type="text" class="form-control" id="title" aria-describedby="title" name="title" placeholder="Enter title" value="{{ $article->title }}" required>
+            <input type="text"
+                   class="form-control"
+                   id="title"
+                   aria-describedby="title"
+                   name="title"
+                   placeholder="Enter title"
+                   value="{{ $article->title }}"
+                   required>
         </div>
         <div class="form-group">
             <label for="text">Content</label>
             <textarea name="text" id="text" class="form-group" required>{{ $article->text }}</textarea>
-        </div>
-        <div class="form-group">
-            <label for="ig">IG post URL</label>
-            <input type="url" class="form-control" id="ig" aria-describedby="ig" name="ig" placeholder="https://www.instagram.com/p/CJ38KAngLNC/" value="{{ $article->ig }}">
         </div>
         <div class="input-group">
             <div class="input-group-prepend">
@@ -32,25 +35,20 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="select">Tags</label>
-            <select name="tags[]" id="select" multiple class="form-control" required>
-                @forelse($tags as $tag)
-                    <option value="{{ $tag->title }}"
-                    @if(in_array_r($tag->id, $article->tags->toArray()))
-                        selected
-                    @endif
-                    >{{ $tag->title }}</option>
-                @empty
-
-                @endforelse
-            </select>
-        </div>
-        <div class="form-group">
             <label for="published">Is published?</label>
-            <input type="checkbox" class="form-control icheck-blue" id="published" aria-describedby="published" name="published" @if($article->active == '1') checked @endif value="1">
+            <input type="checkbox"
+                   class="form-control icheck-blue"
+                   id="published"
+                   aria-describedby="published"
+                   name="published"
+                   @checked($article->active)
+                   value="1">
         </div>
         <button type="submit" class="btn btn-primary">Edit</button>
-        <a href="{{ route('admin.articles.delete', $article) }}" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
+        <a href="{{ route('admin.articles.delete', $article) }}"
+           class="btn btn-danger"
+           onclick="return confirm('Are you sure?')">Delete
+        </a>
     </form>
 @stop
 
@@ -67,17 +65,17 @@
     <script src="{{ asset('js/summernote-ext-highlight.min.js') }}"></script>
     <script>
         $.ajax({
-            url: 'https://api.github.com/emojis',
+            url  : 'https://api.github.com/emojis',
             async: false
-        }).then(function(data) {
+        }).then(function (data) {
             window.emojis = Object.keys(data);
             window.emojiUrls = data;
         });
 
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('#text').summernote({
-                height: 300,
-                hint: {
+                height      : 300,
+                hint        : {
                     match   : /:([\-+\w]+)$/,
                     search  : function (keyword, callback) {
                         callback($.grep(emojis, function (item) {
@@ -97,7 +95,7 @@
                     }
                 },
                 prettifyHtml: false,
-                toolbar: [
+                toolbar     : [
                     ['style', ['style']],
                     ['font', ['bold', 'underline', 'clear']],
                     ['fontname', ['fontname']],
@@ -108,9 +106,6 @@
                     ['view', ['fullscreen', 'codeview', 'help']],
                     ['highlight', ['highlight']],
                 ],
-            });
-            $('#select').select2({
-                tags: true
             });
         });
     </script>

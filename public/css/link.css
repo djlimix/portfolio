@@ -46,12 +46,13 @@ h1 {
 }
 
 .link {
-    background: #EEE5E9;
     width: 25%;
     margin: 20px auto;
 }
 
 .links a {
+    margin-bottom: 15px;
+    background: #EEE5E9;
     display: block;
     color: #7C7C7C;
     padding: 20px;

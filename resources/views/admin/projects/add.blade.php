@@ -1,68 +1,152 @@
 @extends('adminlte::page')
 
-@section('title', 'Add project')
+@section('title', isset($project) ? 'Edit project' : 'Add project')
 
 @section('content_header')
-    <h1>Add project</h1>
+    @isset($project)
+        <h1>Edit project</h1>
+    @else
+        <h1>Add project</h1>
+    @endisset
 @stop
 
 @section('content')
-    <form method="POST" action="{{ route('admin.projects.add') }}" enctype="multipart/form-data">
+    <form method="POST"
+          action="{{ isset($project) ? route('admin.projects.update', $project) : route('admin.projects.store') }}"
+          enctype="multipart/form-data">
         @csrf
+        @isset($project)
+            @method('put')
+        @endisset
         <div class="form-group">
             <label for="title">Title</label>
-            <input type="text" class="form-control" id="title" aria-describedby="title" name="title" placeholder="Enter title" required>
+            <input type="text"
+                   @class([
+		                'form-control',
+                        'is-invalid' => $errors->has('title')
+                   ])
+                   id="title"
+                   aria-describedby="title"
+                   name="title"
+                   placeholder="Enter title"
+                   value="{{ old('title', $project->title ?? '') }}"
+                   required>
         </div>
         <div class="form-group">
             <label for="description">Description</label>
-            <textarea name="description" id="description" class="form-group" required></textarea>
-        </div>
-        <div class="form-group">
-            <label for="technology">Technology</label>
-            <select name="technology" id="technology" class="form-control select">
-                <option value="react">React</option>
-                <option value="react-laravel">React & Laravel</option>
-                <option value="vue-laravel">Vue & Laravel</option>
-                <option value="livewire-laravel">Livewire & Laravel</option>
-                <option value="laravel">Laravel</option>
-                <option value="php">PHP</option>
-                <option value="wp">WordPress</option>
-            </select>
+            <textarea name="description"
+                      id="description"
+                      @class([
+                           'form-control',
+                           'is-invalid' => $errors->has('description')
+                      ])
+                      required>{{ old('description', $project->description ?? '') }}</textarea>
         </div>
         <div class="form-group">
             <label for="type">Type</label>
-            <select name="type" id="type" class="form-control select">
-                <option value="be">BackEnd only</option>
-                <option value="full">BackEnd + FrontEnd</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="won">Won</label>
-            <select name="won" id="won" class="form-control select">
-                <option>----</option>
-                <option value="3rd">3rd place JI</option>
-                <option value="dean">Dean's prize JI</option>
+            <select
+                name="type"
+                id="type"
+                @class([
+                     'form-control',
+                     'select',
+                     'is-invalid' => $errors->has('type')
+                ])>
+                @foreach(\App\Enums\ProjectType::cases() as $type)
+                    <option
+                        @selected(old('type', $project->type ?? '') === $type->value)
+                        value="{{ $type->value }}"
+                    >
+                        {{ $type->name }}
+                    </option>
+                @endforeach
             </select>
         </div>
         <div class="form-group">
             <label for="link">Link</label>
-            <input type="url" class="form-control" id="link" aria-describedby="link" name="link" placeholder="Enter link">
+            <input type="url"
+                   @class([
+		                'form-control',
+                        'is-invalid' => $errors->has('url')
+                   ])
+                   id="link"
+                   aria-describedby="link"
+                   name="link"
+                   value="{{ old('link', $project->link ?? '') }}"
+                   placeholder="Enter link">
         </div>
         <div class="form-group">
             <label for="year">Year</label>
-            <input type="number" class="form-control" id="year" aria-describedby="year" name="year" placeholder="Enter year" max="{{ date('Y') }}" required>
+            <input type="number"
+                   @class([
+		                'form-control',
+                        'is-invalid' => $errors->has('year')
+                   ])
+                   id="year"
+                   aria-describedby="year"
+                   name="year"
+                   value="{{ old('year', $project->year ?? '') }}"
+                   placeholder="Enter year"
+                   required>
+        </div>
+        <div class="form-group">
+            <label for="end">End</label>
+            <input type="date"
+                   @class([
+		                'form-control',
+                        'is-invalid' => $errors->has('end')
+                   ])
+                   id="end"
+                   aria-describedby="end"
+                   name="end"
+                   value="{{ old('end', $project->end ?? '') }}"
+                   placeholder="Enter end">
         </div>
         <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="images">Screenshots</span>
             </div>
             <div class="custom-file">
-                <input type="file" class="custom-file-input" id="images" aria-describedby="images" name="images[]" accept="image/*" multiple required>
+                <input type="file"
+                       @class([
+                            'custom-file-input',
+                            'is-invalid' => $errors->has('images')
+                       ])
+                       id="images"
+                       aria-describedby="images"
+                       name="images[]"
+                       accept="image/*"
+                       multiple>
                 <label class="custom-file-label" for="images">Choose file</label>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">Add</button>
+        @isset($project)
+            <p class="text-muted mt-1 mb-3">Selecting new images will remove the old ones</p>
+        @endisset
+        <button type="submit" class="btn btn-primary">
+            @isset($project)
+                Edit
+            @else
+                Add
+            @endisset
+        </button>
+        @isset($project)
+            <a class="btn btn-danger"
+               onclick="return confirm('Are you sure?') && deleteProject()">Delete
+            </a>
+        @endisset
     </form>
+    @isset($project)
+        <div class="flex-row">
+            @foreach($project->images as $image)
+                <img src="{{ asset($image->url) }}" alt="img" style="width: 24%">
+            @endforeach
+        </div>
+        <form action="{{ route('admin.projects.destroy', $project) }}" id="deleteProject" method="post">
+            @csrf
+            @method('delete')
+        </form>
+    @endisset
 @stop
 
 @section('css')
@@ -76,12 +160,14 @@
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('#description').summernote({
-                height: 300,
+                height : 300,
                 toolbar: ''
             });
             $('.select').select2();
         });
+
+        const deleteProject = () => document.querySelector('#deleteProject').submit()
     </script>
 @endsection

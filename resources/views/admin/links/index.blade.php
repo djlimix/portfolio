@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Articles')
+@section('title', 'Links')
 
 @section('content_header')
-    <h1>Articles</h1>
+    <h1>Links</h1>
 @stop
 
 @section('content')
@@ -12,22 +12,22 @@
         <tr>
             <td>#</td>
             <td>Title</td>
-            <td>Views</td>
+            <td>To</td>
             <td>Created at</td>
         </tr>
         </thead>
         <tbody>
-        @forelse($articles as $article)
+        @forelse($links as $row)
             <tr>
-                <td>{{ $article->id }}</td>
+                <td>{{ $row->id }}</td>
                 <td>
-                    <a href="{{ route('admin.articles.edit', $article) }}">{{ $article->title }}</a>
+                    <a href="{{ route('admin.links.edit', $row) }}">{{ $row->title }}</a>
                 </td>
-                <td>{{ $article->views }}</td>
-                <td>{{ $article->published }}</td>
+                <td>{{ $row->url }}</td>
+                <td>{{ $row->published }}</td>
             </tr>
         @empty
-            There are no articles available.
+            There are no links available.
         @endforelse
         </tbody>
     </table>

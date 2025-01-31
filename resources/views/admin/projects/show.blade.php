@@ -7,26 +7,28 @@
 @stop
 
 @section('content')
-    <table id="table">
+    <table id="table" class="table table-striped" style="width:100%">
         <thead>
-            <tr>
-                <td>#</td>
-                <td>Title</td>
-                <td>Year</td>
-                <td>Created at</td>
-            </tr>
+        <tr>
+            <td>#</td>
+            <td>Title</td>
+            <td>Year</td>
+            <td>Created at</td>
+        </tr>
         </thead>
         <tbody>
-            @forelse($projects as $project)
-                <tr>
-                    <td>{{ $project->id }}</td>
-                    <td><a href="{{ route('admin.projects.edit', $project) }}">{{ $project->title }}</a></td>
-                    <td>{{ $project->year }}</td>
-                    <td>{{ $project->published }}</td>
-                </tr>
-            @empty
-                There are no projects available.
-            @endforelse
+        @forelse($projects as $project)
+            <tr>
+                <td>{{ $project->id }}</td>
+                <td>
+                    <a href="{{ route('admin.projects.edit', $project) }}">{{ $project->title }}</a>
+                </td>
+                <td>{{ $project->year }}</td>
+                <td>{{ $project->published }}</td>
+            </tr>
+        @empty
+            There are no projects available.
+        @endforelse
         </tbody>
     </table>
 @stop
@@ -35,10 +37,10 @@
 
 @section('js')
     <script>
-        $(document).ready( function () {
+        $(document).ready(function () {
             $('#table').DataTable({
-                "order": [[ 0, "desc" ]]
+                "order": [[0, "desc"]]
             });
-        } );
+        });
     </script>
 @endsection
