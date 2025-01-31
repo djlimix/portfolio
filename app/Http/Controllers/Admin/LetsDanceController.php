@@ -37,7 +37,7 @@ class LetsDanceController extends Controller
         $episode = LetsDance::create($data);
 
         $imgFile = Image::make($artwork->getRealPath())
-                        ->fit(500, 500, function ($constraint) {
+                        ->fit(1000, 1000, function ($constraint) {
                             $constraint->upsize();
                         });
 
@@ -63,7 +63,7 @@ class LetsDanceController extends Controller
 
         if (!empty($artwork)) {
             $imgFile = Image::make($artwork->getRealPath())
-                            ->fit(500, 500, function ($constraint) {
+                            ->fit(1000, 1000, function ($constraint) {
                                 $constraint->upsize();
                             });
 
