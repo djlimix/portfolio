@@ -41,12 +41,6 @@ Route::get('/', [
     'as'   => 'home'
 ]);
 
-Route::get('{ld}', [
-    'uses' => 'App\Http\Controllers\LetsDanceController@show',
-    'as'   => 'ld.show'
-]);
-//});
-
 Route::get('login', [
     'as'   => 'login',
     'uses' => 'App\Http\Controllers\Auth\LoginController@showLoginForm'
@@ -59,6 +53,12 @@ Route::post('logout', [
     'as'   => 'logout',
     'uses' => 'App\Http\Controllers\Auth\LoginController@logout'
 ]);
+
+Route::get('{ld}', [
+    'uses' => 'App\Http\Controllers\LetsDanceController@show',
+    'as'   => 'ld.show'
+]);
+//});
 
 //Route::get('/', [
 //    'as'   => 'home',
