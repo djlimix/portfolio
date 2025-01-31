@@ -37,7 +37,8 @@ use Illuminate\Support\Facades\Route;
 
 //Route::group(['domain' => 'letsdance.limix.eu'], function () {
 Route::get('/', [
-    'uses' => 'App\Http\Controllers\LetsDanceController@index'
+    'uses' => 'App\Http\Controllers\LetsDanceController@index',
+    'as'   => 'home'
 ]);
 
 Route::get('{ld}', [
