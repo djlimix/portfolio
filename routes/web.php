@@ -20,4 +20,4 @@ Route::get('login', [LoginController::class, 'showLoginForm']);
 Route::post('login', [LoginController::class, 'login']);
 Route::post('logout', [LoginController::class, 'logout']);
 
-Route::get('{ld:number}', [LetsDanceController::class, 'show'])->name('ld.show');
+Route::get('episode/{ld:number}', [LetsDanceController::class, 'show'])->name('ld.show');
