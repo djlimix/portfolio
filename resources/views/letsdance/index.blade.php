@@ -6,11 +6,11 @@
             Let's Dance by LiMix
         </h1>
 
-        <img src="{{ \Illuminate\Support\Facades\Vite::asset('resources/images/dj_logo_dark.png') }}"
+        <img src="{{ Vite::asset('resources/images/dj_logo_dark.png') }}"
              alt="dj logo"
              class="artwork dark_logo">
 
-        <img src="{{ \Illuminate\Support\Facades\Vite::asset('resources/images/dj_logo_light.png') }}"
+        <img src="{{ Vite::asset('resources/images/dj_logo_light.png') }}"
              alt="dj logo"
              class="artwork light_logo">
 

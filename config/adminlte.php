@@ -63,9 +63,9 @@ return [
     |
     */
 
-    'logo' => '<b>LiMix</b> Media',
-    'logo_img' => 'img/dj_logo_white.png',
-    'logo_img_class' => 'brand-image',
+    'logo' => '',
+    'logo_img' => 'resources/images/dj_logo_light.png',
+    'logo_img_class' => 'brand-image-xl',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
     'logo_img_alt' => 'LiMix Media',
@@ -86,11 +86,11 @@ return [
     'auth_logo' => [
         'enabled' => true,
         'img' => [
-            'path' => 'img/dj_logo_dark.png',
+            'path' => 'resources/images/dj_logo_dark.png',
             'alt' => 'Auth Logo',
             'class' => '',
-            'width' => 50,
-            'height' => 50,
+            'width' => 252,
+            'height' => 100,
         ],
     ],
 
@@ -113,11 +113,11 @@ return [
         'enabled' => true,
         'mode' => 'fullscreen',
         'img' => [
-            'path' => 'img/dj_logo_dark.png',
+            'path' => 'resources/images/dj_logo_dark.png',
             'alt' => 'Preloader Image',
             'effect' => 'animation__shake',
-            'width' => 504,
-            'height' => 201,
+            'width' => 252,
+            'height' => 100,
         ],
     ],
 
