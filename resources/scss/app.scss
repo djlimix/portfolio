@@ -1,0 +1,143 @@
+$color_1: inherit;
+$color_2: #7C7C7C;
+$bg_light: #EEE5E9;
+$bg_dark: #000;
+$font-family_1: 'Lato', sans-serif;
+
+@import "https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap";
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #EEE5E9;
+}
+::-webkit-scrollbar-thumb {
+    background: $color_2;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: $font-family_1;
+    &:before {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: $font-family_1;
+    }
+    &:after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: $font-family_1;
+    }
+}
+html {
+    height: 100%;
+    background: $bg_light;
+}
+body {
+    height: 100%;
+}
+a {
+    color: $color_1;
+    text-decoration: none;
+    &:visited {
+        color: $color_1;
+        text-decoration: none;
+    }
+}
+section {
+    min-height: 100vh;
+    text-align: center;
+    margin: 0 auto;
+    padding: 5% 0;
+}
+h1 {
+    font-size: 50px;
+    margin-bottom: 50px;
+}
+.link {
+    width: 25%;
+    margin: 20px auto;
+}
+.links {
+    a {
+        margin-bottom: 15px;
+        border-radius: 15px;
+        background: $bg_dark;
+        display: block;
+        color: $bg_light;
+        padding: 20px;
+        font-weight: 700;
+        font-size: 25px;
+    }
+}
+.artwork {
+    width: 250px;
+    margin: 0 auto;
+}
+.dark_logo {
+    display: block;
+}
+
+.light_logo {
+    display: none;
+}
+@media screen and (max-width: 2252px) {
+    .link {
+        width: 33%;
+    }
+}
+@media screen and (max-width: 1796px) {
+    .link {
+        width: 40%;
+    }
+}
+@media screen and (max-width: 1076px) {
+    .link {
+        width: 90%;
+    }
+}
+@media screen and (max-width: 764px) {
+    h1 {
+        font-size: 40px;
+        margin-top: 50px;
+    }
+}
+@media screen and (max-width: 375px) {
+    h1 {
+        font-size: 30px;
+        margin-bottom: 0;
+    }
+    .link {
+        a {
+            padding: 10px;
+            tab-size: 20px;
+        }
+    }
+}
+@media screen and (prefers-color-scheme: dark) {
+    html {
+        background: $bg_dark;
+    }
+
+    * {
+        color: $bg_light;
+    }
+
+    .dark_logo {
+        display: none;
+    }
+
+    .light_logo {
+        display: block;
+    }
+
+    .links {
+        a {
+            background: $bg_light;
+            color: $bg_dark;
+        }
+    }
+}

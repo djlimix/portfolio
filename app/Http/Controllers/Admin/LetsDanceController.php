@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreLetsDanceRequest;
 use App\LetsDance;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
@@ -22,6 +21,7 @@ class LetsDanceController extends Controller
     public function create()
     {
         $latest_number = LetsDance::latest('number')->first()?->number ?? 0;
+        $latest_number++;
 
         return view('admin.ld.add', compact('latest_number'));
     }
@@ -37,9 +37,9 @@ class LetsDanceController extends Controller
         $episode = LetsDance::create($data);
 
         $imgFile = Image::make($artwork->getRealPath())
-                        ->fit(1000, 1000, function ($constraint) {
-                            $constraint->upsize();
-                        });
+            ->fit(1000, 1000, function ($constraint) {
+                $constraint->upsize();
+            });
 
         Storage::drive('public')->put("artwork/{$episode->id}.jpg", $imgFile->encode('jpg'));
 
@@ -61,11 +61,11 @@ class LetsDanceController extends Controller
 
         $ld->update($data);
 
-        if (!empty($artwork)) {
+        if (! empty($artwork)) {
             $imgFile = Image::make($artwork->getRealPath())
-                            ->fit(1000, 1000, function ($constraint) {
-                                $constraint->upsize();
-                            });
+                ->fit(1000, 1000, function ($constraint) {
+                    $constraint->upsize();
+                });
 
             Storage::drive('public')->put("artwork/{$ld->id}.jpg", $imgFile->encode('jpg'));
         }

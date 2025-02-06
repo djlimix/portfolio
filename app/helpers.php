@@ -1,7 +1,7 @@
 <?php
 
-if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
-    $_SERVER['REMOTE_ADDR'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
+if (isset($_SERVER['HTTP_CF_CONNECTING_IP'])) {
+    $_SERVER['REMOTE_ADDR'] = $_SERVER['HTTP_CF_CONNECTING_IP'];
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * *  *
@@ -11,16 +11,14 @@ if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
  * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 use App\Http\Requests\Admin\StoreArticleRequest;
-use \Illuminate\Http\Request;
 
 /**
- * @param $data
- *
  * @return string
  */
-function b64toUrl($data) {
+function b64toUrl($data)
+{
     // Create blank dom object
-    $dom = new \DOMDocument();
+    $dom = new \DOMDocument;
 
     // Load data in the dom object
     $dom->loadHTML($data);
@@ -30,7 +28,7 @@ function b64toUrl($data) {
 
     foreach ($images as $image) {
 
-        //Getting the value of src attribuite of img
+        // Getting the value of src attribuite of img
         $raw = $image->getAttribute('src');
 
         /* If src tag has value data:image
@@ -46,12 +44,12 @@ function b64toUrl($data) {
 
             // Convert base64 data to the image again
             $img = Image::configure(['driver' => 'imagick'])
-                        ->make($raw)
-                        ->resize(1000, null, function($constraint) {
-                            $constraint->aspectRatio();
-                            $constraint->upsize();
-                        })
-                        ->encode($mimetype, 100);
+                ->make($raw)
+                ->resize(1000, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->encode($mimetype, 100);
 
             // Store the image in disk
             Storage::put($filepath, $img);
@@ -72,28 +70,27 @@ function b64toUrl($data) {
 }
 
 /**
- * @param StoreArticleRequest $request
- *
  * @return string[]
  */
-function uploadBg(StoreArticleRequest $request) {
+function uploadBg(StoreArticleRequest $request)
+{
     $image = $request->file('bg');
-    $path  = storage_path('app/temp/');
-    $temp  = $path.$image->getClientOriginalName();
+    $path = storage_path('app/temp/');
+    $temp = $path.$image->getClientOriginalName();
     $image->move($path, $image->getClientOriginalName());
     $id = uniqid();
 
-    $name       = $id.'.'.$image->clientExtension();
+    $name = $id.'.'.$image->clientExtension();
     $thumb_name = $id.'_thumb.'.$image->clientExtension();
 
     $img = Image::configure(['driver' => 'imagick'])
-                ->make($temp)->resize(2000, null, function($constraint) {
+        ->make($temp)->resize(2000, null, function ($constraint) {
             $constraint->aspectRatio();
             $constraint->upsize();
         })->encode($image->getClientMimeType(), 100);
 
     $thumb = Image::configure(['driver' => 'imagick'])
-                  ->make($temp)->resize(500, null, function($constraint) {
+        ->make($temp)->resize(500, null, function ($constraint) {
             $constraint->aspectRatio();
             $constraint->upsize();
         })->encode($image->getClientMimeType(), 100);
@@ -106,13 +103,11 @@ function uploadBg(StoreArticleRequest $request) {
 }
 
 /**
- * @param $needle
- * @param $haystack
- * @param bool $strict
- *
+ * @param  bool  $strict
  * @return bool
  */
-function in_array_r($needle, $haystack, $strict = false) {
+function in_array_r($needle, $haystack, $strict = false)
+{
     foreach ($haystack as $item) {
         if (($strict ? $item === $needle : $item == $needle) || (is_array($item) && in_array_r($needle, $item, $strict))) {
             return true;
@@ -122,6 +117,7 @@ function in_array_r($needle, $haystack, $strict = false) {
     return false;
 }
 
-function checkForCode($body) {
+function checkForCode($body)
+{
     return str_replace('<pre>', '<pre class="prettyprint">', $body);
 }

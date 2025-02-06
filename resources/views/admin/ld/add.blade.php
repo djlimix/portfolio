@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', isset($project) ? 'Edit project' : 'Add project')
+@section('title', isset($project) ? 'Edit episode' : 'Add episode')
 
 @section('content_header')
     @isset($project)
@@ -100,7 +100,7 @@
                            id="artwork"
                            aria-describedby="artwork"
                            name="artwork"
-                           accept="image/jpeg">
+                           accept="image/*">
                     <label class="custom-file-label"
                            for="artwork">Choose file
                     </label>

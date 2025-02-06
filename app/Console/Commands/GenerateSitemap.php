@@ -2,11 +2,10 @@
 
 namespace App\Console\Commands;
 
-use App\Article;
-use App\Project;
-use App\Tag;
+use App\LetsDance;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\URL;
 
 class GenerateSitemap extends Command
 {
@@ -25,45 +24,35 @@ class GenerateSitemap extends Command
     protected $description = 'Generate sitemap';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * Execute the console command.
      *
      * @return mixed
      */
     public function handle()
     {
-        // blog urls
-        $xml = '<urlset urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
+        URL::forceHttps();
+        $out = '<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
 
-        $xml .= '<url>
-                    <loc>https://limix.eu</loc>
-                    <lastmod>2021-</lastmod>
+        $change = LetsDance::query()
+            ->latest('updated_at')
+            ->select('updated_at')
+            ->first();
+
+        $out .= '<url>
+                    <loc>'.route('home').'</loc>
+                    <lastmod>'.$change->updated_at->format('Y-m-d').'</lastmod>
                 </url>';
-        foreach ( Article::whereActive('1')->get() as $article ) {
-            $xml .= '<url>
-                        <loc>https://blog.limix.eu/' . $article->slug . '</loc>
-                        <changefreq>daily</changefreq>
-                        <priority>0.80</priority>
-                    </url>';
-        }
-        foreach ( Tag::all() as $tag ) {
-            $xml .= '<url>
-                        <loc>https://blog.limix.eu/tag/' . $tag->slug . '</loc>
-                        <changefreq>daily</changefreq>
-                        <priority>0.80</priority>
-                    </url>';
-        }
-        $xml .= '</urlset>';
 
-        File::put(public_path('sitemap.xml'), $xml);
+        foreach (LetsDance::lazy() as $item) {
+            $out .= '<url>
+                        <loc>'.route('ld.show', $item->number).'</loc>
+                        <lastmod>'.$change->updated_at->format('Y-m-d').'</lastmod>
+                    </url>';
+        }
+
+        $out .= '</urlset>';
+
+        File::put(public_path('sitemap.xml'), $out);
     }
 }

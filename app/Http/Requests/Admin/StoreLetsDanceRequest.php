@@ -9,12 +9,12 @@ class StoreLetsDanceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'number'         => ['required', 'integer'],
-            'guest'          => ['required'],
-            'soundcloud'     => ['required'],
+            'number' => ['required', 'integer'],
+            'guest' => ['required'],
+            'soundcloud' => ['required'],
             'apple_podcasts' => ['required'],
-            'hypeddit'       => ['required'],
-            'artwork'        => ['nullable', 'image']
+            'hypeddit' => ['required'],
+            'artwork' => ['nullable', 'image'],
         ];
     }
 

@@ -4,15 +4,18 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreLinkRequest extends FormRequest {
-    public function rules(): array {
+class StoreLinkRequest extends FormRequest
+{
+    public function rules(): array
+    {
         return [
             'title' => ['required', 'string'],
-            'url'   => ['required', 'url']
+            'url' => ['required', 'url'],
         ];
     }
 
-    public function authorize(): bool {
+    public function authorize(): bool
+    {
         return auth()->user()->isAdmin();
     }
 }
