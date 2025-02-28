@@ -14,7 +14,6 @@
             <td>Guest</td>
             <td>Soundcloud</td>
             <td>Apple Podcasts</td>
-            <td>Download</td>
             <td>Created at</td>
         </tr>
         </thead>
