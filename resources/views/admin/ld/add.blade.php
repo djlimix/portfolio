@@ -73,19 +73,6 @@
                        value="{{ old('apple_podcasts', $ld->apple_podcasts ?? '') }}"
                        placeholder="Enter Apple Podcasts">
             </div>
-            <div class="form-group">
-                <label for="hypeddit">Hypeddit</label>
-                <input type="url"
-                       @class([
-                            'form-control',
-                            'is-invalid' => $errors->has('hypeddit')
-                       ])
-                       id="hypeddit"
-                       aria-describedby="hypeddit"
-                       name="hypeddit"
-                       value="{{ old('hypeddit', $ld->hypeddit ?? '') }}"
-                       placeholder="Enter Hypeddit">
-            </div>
             <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"

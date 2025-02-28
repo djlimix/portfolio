@@ -27,7 +27,6 @@
                 </td>
                 <td>{{ $episode->soundcloud }}</td>
                 <td>{{ $episode->apple_podcasts }}</td>
-                <td>{{ $episode->hypeddit }}</td>
                 <td>{{ $episode->created_at->diffForHumans() }}</td>
             </tr>
         @endforeach

@@ -29,12 +29,6 @@
                     Apple Podcasts
                 </a>
             </div>
-            <div class="link">
-                <a href="{{ url($ld->hypeddit) }}"
-                   target="_blank">
-                    Free Download
-                </a>
-            </div>
         </div>
     </section>
 @endsection

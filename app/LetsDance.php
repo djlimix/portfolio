@@ -11,6 +11,5 @@ class LetsDance extends Model
         'guest',
         'soundcloud',
         'apple_podcasts',
-        'hypeddit',
     ];
 }

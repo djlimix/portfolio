@@ -13,7 +13,6 @@ class StoreLetsDanceRequest extends FormRequest
             'guest' => ['required'],
             'soundcloud' => ['required'],
             'apple_podcasts' => ['required'],
-            'hypeddit' => ['required'],
             'artwork' => ['nullable', 'image'],
         ];
     }
